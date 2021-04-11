@@ -1,0 +1,6 @@
+/home/perfectstyle/Study/EPAM/SecondWebApp/src/main/java/com/epam/web/command/Command.java
+/home/perfectstyle/Study/EPAM/SecondWebApp/src/main/java/com/epam/web/Controller.java
+/home/perfectstyle/Study/EPAM/SecondWebApp/src/main/java/com/epam/web/entities/User.java
+/home/perfectstyle/Study/EPAM/SecondWebApp/src/main/java/com/epam/web/command/LoginCommand.java
+/home/perfectstyle/Study/EPAM/SecondWebApp/src/main/java/com/epam/web/command/CommandFactory.java
+/home/perfectstyle/Study/EPAM/SecondWebApp/src/main/java/com/epam/web/service/UserService.java

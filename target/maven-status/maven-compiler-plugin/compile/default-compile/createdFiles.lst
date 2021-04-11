@@ -1,0 +1,6 @@
+com/epam/web/service/UserService.class
+com/epam/web/command/Command.class
+com/epam/web/entities/User.class
+com/epam/web/Controller.class
+com/epam/web/command/CommandFactory.class
+com/epam/web/command/LoginCommand.class
