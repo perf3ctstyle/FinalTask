@@ -7,13 +7,15 @@ public class User implements Identifiable {
     private final Long id;
     private final String login;
     private final String password;
-    private final UserRoles userRoles;
+    private final UserRoles role;
+    private final boolean isBlocked;
 
-    public User(Long id, String login, String password, UserRoles userRoles) {
+    public User(Long id, String login, String password, UserRoles role, boolean isBlocked) {
         this.id = id;
         this.login = login;
         this.password = password;
-        this.userRoles = userRoles;
+        this.role = role;
+        this.isBlocked = isBlocked;
     }
 
     @Override
@@ -29,7 +31,11 @@ public class User implements Identifiable {
         return password;
     }
 
-    public UserRoles getUserRole() {
-        return userRoles;
+    public UserRoles getRole() {
+        return role;
+    }
+
+    public boolean isBlocked() {
+        return isBlocked;
     }
 }

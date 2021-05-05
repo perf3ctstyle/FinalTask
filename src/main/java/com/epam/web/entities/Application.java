@@ -1,19 +1,20 @@
 package com.epam.web.entities;
 
-public class Application {
+public class Application implements Identifiable {
 
     private final Long id;
     private final Faculty faculty;
-    private final Subject[] subjects;
-    private final Certificate certificate;
+    private final Integer[] subjectsScore;
+    private final Integer certificateScore;
 
-    public Application(Long id, Faculty faculty, Subject[] subjects, Certificate certificate) {
+    public Application(Long id, Faculty faculty, Integer[] subjectsScore, Integer certificateScore) {
         this.id = id;
         this.faculty = faculty;
-        this.subjects = subjects;
-        this.certificate = certificate;
+        this.subjectsScore = subjectsScore;
+        this.certificateScore = certificateScore;
     }
 
+    @Override
     public Long getId() {
         return id;
     }
@@ -22,11 +23,11 @@ public class Application {
         return faculty;
     }
 
-    public Subject[] getSubjects() {
-        return subjects;
+    public Integer[] getSubjectsScore() {
+        return subjectsScore;
     }
 
-    public Certificate getCertificate() {
-        return certificate;
+    public Integer getCertificate() {
+        return certificateScore;
     }
 }

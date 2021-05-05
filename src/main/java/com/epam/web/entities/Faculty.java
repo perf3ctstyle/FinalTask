@@ -1,6 +1,6 @@
 package com.epam.web.entities;
 
-public class Faculty {
+public class Faculty implements Identifiable {
 
     private final Long id;
     private final String name;
@@ -14,6 +14,7 @@ public class Faculty {
         this.admissionPlan = admissionPlan;
     }
 
+    @Override
     public Long getId() {
         return id;
     }

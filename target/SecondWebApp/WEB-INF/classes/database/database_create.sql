@@ -5,19 +5,16 @@ create table user (
     credential_id BIGINT,
     application_id BIGINT,
     role enum('ABITURIENT', 'ADMIN') DEFAULT 'ABITURIENT',
+    is_blocked boolean,
     FOREIGN KEY (credential_id) REFERENCES credential(id),
     FOREIGN KEY (application_id) REFERENCES application(id)
 );
 
 create table faculty (
     id BIGINT UNIQUE PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    name_en VARCHAR(255),
-    name_ru VARCHAR(255),
-    name_by VARCHAR(255),
-    description_en VARCHAR(255),
-    description_ru VARCHAR(255),
-    description_by VARCHAR(255),
-    admission_plan BIGINT
+    name VARCHAR(255),
+    description VARCHAR(1000),
+    admission_plan INT
 );
 
 create table credential (
@@ -40,15 +37,21 @@ create table application (
 
 create table subject (
     id BIGINT UNIQUE PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    user_id BIGINT,
-    name VARCHAR(255),
-    score BIGINT,
-    FOREIGN KEY (user_id) REFERENCES user(id)
+    name VARCHAR(255)
+);
+
+create table user_subject (
+  id BIGINT UNIQUE PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  user_id BIGINT,
+  subject_id BIGINT,
+  score INT,
+  FOREIGN KEY (user_id) REFERENCES user(id),
+  FOREIGN KEY (subject_id) REFERENCES subject(id)
 );
 
 create table certificate (
     id BIGINT UNIQUE PRIMARY KEY NOT NULL AUTO_INCREMENT,
     user_id BIGINT,
-    score BIGINT,
+    score INT,
     FOREIGN KEY (user_id) REFERENCES user(id)
 );

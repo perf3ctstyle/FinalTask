@@ -5,5 +5,7 @@
 <h1 class="header-text">
     <fmt:message key="local.header.text"/>
 </h1>
-<button class="button logout-button" type="submit" value="logout"><fmt:message key="local.header.button.logout"/></button>
+    <a href="${pageContext.request.contextPath}/controller?command=logout" class="button logout-button">
+        <fmt:message key="local.header.button.logout"/>
+    </a>
 </body>

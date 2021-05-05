@@ -1,6 +1,7 @@
 package com.epam.web.command;
 
 import com.epam.web.dao.DaoHelperFactory;
+import com.epam.web.service.FacultyService;
 import com.epam.web.service.UserService;
 
 public class CommandFactory {
@@ -14,14 +15,18 @@ public class CommandFactory {
     private static final String APPLICATIONS = "applications";
     private static final String ABITURIENT = "abiturient";
     private static final String ADMISSION_REGISTRY = "admissionRegistry";
+    private static final String ERROR = "error";
 
-    private static final String INDEX_PAGE = "/WEB-INF/index.jsp";
+    private static final String INDEX_PAGE = "/index.jsp";
     private static final String MAIN_PAGE = "/WEB-INF/view/main.jsp";
     private static final String FACULTY_PAGE = "/WEB-INF/view/faculty.jsp";
     private static final String APPLY_PAGE = "/WEB-INF/view/apply.jsp";
     private static final String APPLICATIONS_PAGE = "/WEB-INF/view/applications.jsp";
     private static final String ABITURIENT_PAGE = "/WEB-INF/view/abiturient.jsp";
     private static final String ADMISSION_REGISTRY_PAGE = "/WEB-INF/view/admissionRegistry.jsp";
+    private static final String ERROR_PAGE = "/WEB-INF/view/fragments/error.jsp";
+
+    private static final String UNKNOWN_COMMAND = "Unknown command exception!";
 
     public Command create(String type) {
         switch (type) {
@@ -32,9 +37,9 @@ public class CommandFactory {
             case LOGOUT:
                 return new LogoutCommand();
             case MAIN:
-                return new ShowPageCommand(MAIN_PAGE);
+                return new ShowAllFacultiesCommand(new FacultyService(new DaoHelperFactory()));
             case FACULTY:
-                return new ShowPageCommand(FACULTY_PAGE);
+                return new ShowFacultyPageCommand(new FacultyService(new DaoHelperFactory()));
             case APPLY:
                 return new ShowPageCommand(APPLY_PAGE);
             case APPLICATIONS:
@@ -43,8 +48,10 @@ public class CommandFactory {
                 return new ShowPageCommand(ABITURIENT_PAGE);
             case ADMISSION_REGISTRY:
                 return new ShowPageCommand(ADMISSION_REGISTRY_PAGE);
+            case ERROR:
+                return new ShowPageCommand(ERROR_PAGE);
             default:
-                throw new IllegalArgumentException("Unknown command!");
+                throw new IllegalArgumentException(UNKNOWN_COMMAND);
         }
     }
 }

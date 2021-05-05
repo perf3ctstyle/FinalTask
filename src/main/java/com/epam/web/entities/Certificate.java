@@ -1,6 +1,6 @@
 package com.epam.web.entities;
 
-public class Certificate {
+public class Certificate implements Identifiable {
 
     private final Long id;
     private final int score;
@@ -10,6 +10,7 @@ public class Certificate {
         this.score = score;
     }
 
+    @Override
     public Long getId() {
         return id;
     }

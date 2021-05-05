@@ -2,7 +2,6 @@ package com.epam.web.dao;
 
 import com.epam.web.connection.ProxyConnection;
 import com.epam.web.entities.Identifiable;
-import com.epam.web.entities.User;
 import com.epam.web.exception.DaoException;
 import com.epam.web.mapper.Mapper;
 
@@ -10,7 +9,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,7 +38,7 @@ public abstract class AbstractDao<T extends Identifiable> implements Dao<T> {
             }
             return entities;
         } catch (SQLException e) {
-            throw new DaoException(e);
+            throw new DaoException(e.getMessage(), e);
         }
     }
 
@@ -83,7 +81,7 @@ public abstract class AbstractDao<T extends Identifiable> implements Dao<T> {
 
     @Override
     public Optional<T> findById(long id) throws DaoException {
-        String query = String.format(FIND_BY_ID, id);
+        String query = String.format(FIND_BY_ID, tableName);
         return executeSingleResultQuery(query, id);
     }
 

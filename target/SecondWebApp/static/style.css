@@ -54,6 +54,7 @@ body {
     height: 100%;
     position: fixed;
     z-index: 1;
+    top: 0;
     left: 0;
     background-color: #395e60;
     overflow-x: hidden;
@@ -76,6 +77,8 @@ body {
 }
 
 .header {
+    top: 0;
+    left: 0;
     position: fixed;
     text-align: center;
     background: cadetblue;
@@ -94,6 +97,10 @@ body {
     padding-left: 80px;
 }
 
+.logout-form {
+    display: inline;
+}
+
 .logout-button {
     margin: 7px;
     float: right;
@@ -109,12 +116,14 @@ body {
     transition-duration: 0.4s;
 }
 
-button {
+.button {
+    -webkit-appearance: button;
+    -moz-appearance: button;
     cursor: pointer;
     border-radius: 7px;
 }
 
-button:hover {
+.button:hover {
     background: white;
     color: cadetblue;
 }
@@ -301,7 +310,6 @@ button:hover {
     font-size: 17px;
     padding: 3px;
     color: white;
-    background: #5f9ea0;
 }
 
 .subject-select {

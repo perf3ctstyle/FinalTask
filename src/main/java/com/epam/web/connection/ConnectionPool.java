@@ -1,9 +1,13 @@
 package com.epam.web.connection;
 
+import com.epam.web.exception.ConnectionException;
+
+import java.sql.Connection;
 import java.util.*;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.stream.IntStream;
 
 public class ConnectionPool {
 
@@ -16,13 +20,14 @@ public class ConnectionPool {
     private final Lock connectionLock = new ReentrantLock();
     private final Semaphore connectionSemaphore;
 
+    private static final int POOL_SIZE = 10;
+
     public static ConnectionPool getInstance() {
         if (instance == null) {
             try {
                 instanceLock.lock();
                 if (instance == null) {
-                    ConnectionPoolFactory connectionPoolFactory = new ConnectionPoolFactory();
-                    instance = connectionPoolFactory.createPool();
+                    instance = new ConnectionPool();
                 }
             } finally {
                 instanceLock.unlock();
@@ -31,16 +36,28 @@ public class ConnectionPool {
         return instance;
     }
 
-    ConnectionPool(List<ProxyConnection> connectionsWithoutPools, int poolSize) {
-        connectionSemaphore = new Semaphore(poolSize);
+    private ConnectionPool() {
+        connectionSemaphore = new Semaphore(POOL_SIZE);
+        createConnections();
+    }
 
-        List<ProxyConnection> connectionsWithPools = new ArrayList<>();
-        connectionsWithoutPools.stream().forEach(connection -> {
-            connection.setConnectionPool(this);
-            connectionsWithPools.add(connection);
+    private void createConnections() {
+        ConnectionFactory connectionFactory = new ConnectionFactory();
+        List<Connection> connections = new ArrayList<>();
+
+        IntStream.range(0, POOL_SIZE).forEach(i -> {
+            Connection connection = connectionFactory.createConnection();
+            connections.add(connection);
         });
 
-        availableConnections.addAll(connectionsWithPools);
+        List<ProxyConnection> proxyConnections = new ArrayList<>();
+
+        connections.stream().forEach(connection -> {
+            ProxyConnection proxyConnection = new ProxyConnection(connection, this);
+            proxyConnections.add(proxyConnection);
+        });
+
+        availableConnections.addAll(proxyConnections);
     }
 
     public ProxyConnection getConnection() {
@@ -53,7 +70,7 @@ public class ConnectionPool {
 
             return connection;
         } catch (InterruptedException e) {
-            throw new ConnectionPoolException(e);
+            throw new ConnectionException(e);
         } finally {
             connectionLock.unlock();
         }

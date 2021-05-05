@@ -1,6 +1,6 @@
 package com.epam.web.entities;
 
-public class Credential {
+public class Credential implements Identifiable {
 
     private final Long id;
     private final String name;
@@ -12,6 +12,7 @@ public class Credential {
         this.surname = surname;
     }
 
+    @Override
     public Long getId() {
         return id;
     }
