@@ -2,15 +2,15 @@ package com.epam.web.dao;
 
 import com.epam.web.connection.ProxyConnection;
 import com.epam.web.entities.Identifiable;
-import com.epam.web.entities.User;
+import com.epam.web.entities.Register;
 import com.epam.web.enums.DaoType;
 import com.epam.web.exception.DaoException;
 
-import java.sql.SQLException;
-
-public class DaoHelper<T extends Identifiable> implements AutoCloseable {
+public class DaoHelper implements AutoCloseable {
 
     private final ProxyConnection connection;
+
+    private static final String UNKNOWN_DAO = "Unknown DAO type!";
 
     public DaoHelper(ProxyConnection connection) {
         this.connection = connection;
@@ -21,16 +21,20 @@ public class DaoHelper<T extends Identifiable> implements AutoCloseable {
             case USER:
                 return new UserDao(connection);
             case FACULTY:
-                return new FacultyDAO(connection);
-            case SUBJECT:
-                return new SubjectDAO(connection);
+                return new FacultyDao(connection);
+            case APPLICATION:
+                return new ApplicationDao(connection);
+            case CREDENTIAL:
+                return new CredentialDao(connection);
+            case REGISTER:
+                return new RegisterDao(connection);
             default:
-                throw new DaoException("Unknown DAO type!");
+                throw new DaoException(UNKNOWN_DAO);
         }
     }
 
     @Override
-    public void close() throws SQLException {
+    public void close() {
         connection.close();
     }
 }

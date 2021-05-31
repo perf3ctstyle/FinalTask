@@ -55,56 +55,38 @@ insert into faculty(id, name, description, admission_plan) values
 'disciplines using distant educational technologies. After being certified ' ||
 'you get an appropriate certificate.', 5);
 
-insert into user(id, login, password_hash, role, is_blocked) values (1, 'admin', md5('admin'), 'ADMIN', false);
-insert into credential(id, user_id, name, surname) values (1, 1, 'admin', 'admin');
-update user set credential_id = 1 where id = 1;
+insert into user(login, password, role, is_blocked) values ('admin', md5('admin'), 'ADMIN', false);
+insert into user_credential(user_id, name, surname) values (1, 'admin', 'admin');
 
-insert into user(id, login, password_hash, is_blocked) values (2, 'nikita', md5('nikita'), false);
-insert into credential(id, user_id, name, surname) values (2, 2, 'Nikita', 'Torop');
-update user set credential_id = 2 where id = 2;
+insert into user(login, password, is_blocked) values ('nikita', md5('nikita'), false);
+insert into user_credential(user_id, name, surname) values (2, 'Nikita', 'Torop');
 
-insert into user(id, login, password_hash, is_blocked) values (3, 'vasya', md5('vasya'), false);
-insert into credential(id, user_id, name, surname) values (3, 3, 'Vasily', 'Savin');
-update user set credential_id = 3 where id = 3;
+insert into user(login, password, is_blocked) values ('vasya', md5('vasya'), false);
+insert into user_credential(user_id, name, surname) values (3, 'Vasily', 'Savin');
 
-insert into user(id, login, password_hash, is_blocked) values (4, 'petya', md5('petya'), false);
-insert into credential(id, user_id, name, surname) values (4, 4, 'Petr', 'Klimuk');
-update user set credential_id = 4 where id = 4;
+insert into user(login, password, is_blocked) values ('petya', md5('petya'), false);
+insert into user_credential(user_id, name, surname) values (4, 'Petr', 'Klimuk');
 
-insert into user(id, login, password_hash, is_blocked) values (5, 'sanya', md5('sanya'), false);
-insert into credential(id, user_id, name, surname) values (5, 5, 'Alexander', 'Borisov');
-update user set credential_id = 5 where id = 5;
+insert into user(login, password, is_blocked) values ('sanya', md5('sanya'), false);
+insert into user_credential(user_id, name, surname) values (5, 'Alexander', 'Borisov');
 
-insert into user(id, login, password_hash, is_blocked) values (6, 'katya', md5('katya'), false);
-insert into credential(id, user_id, name, surname) values (6, 6, 'Ekaterina', 'Stefanenko');
-update user set credential_id = 6 where id = 6;
+insert into user(login, password, is_blocked) values ('katya', md5('katya'), false);
+insert into user_credential(user_id, name, surname) values (6, 'Ekaterina', 'Stefanenko');
 
-insert into user(id, login, password_hash, is_blocked) values (7, 'ksenia', md5('ksenia'), false);
-insert into credential(id, user_id, name, surname) values (7, 7, 'Ksenia', 'Gombalevskaya');
-update user set credential_id = 7 where id = 7;
+insert into user(login, password, is_blocked) values ('ksenia', md5('ksenia'), false);
+insert into user_credential(user_id, name, surname) values (7, 'Ksenia', 'Gombalevskaya');
 
-insert into user(id, login, password_hash, is_blocked) values (8, 'olya', md5('olya'), false);
-insert into credential(id, user_id, name, surname) values (8, 8, 'Olga', 'Krakovskaya');
-update user set credential_id = 8 where id = 8;
+insert into user(login, password, is_blocked) values ('olya', md5('olya'), false);
+insert into user_credential(user_id, name, surname) values (8, 'Olga', 'Krakovskaya');
 
-insert into user(id, login, password_hash, is_blocked) values (9, 'marina', md5('marina'), false);
-insert into credential(id, user_id, name, surname) values (9, 9, 'Marina', 'Kravets');
-update user set credential_id = 9 where id = 9;
+insert into user(login, password, is_blocked) values ('marina', md5('marina'), false);
+insert into user_credential(user_id, name, surname) values (9, 'Marina', 'Kravets');
 
-insert into user(id, login, password_hash, is_blocked) values (10, 'alexandra', md5('alexandra'), false);
-insert into credential(id, user_id, name, surname) values (10, 10, 'Alexandra', 'Dubrovskaya');
-update user set credential_id = 10 where id = 10;
+insert into user(login, password, is_blocked) values ('alexandra', md5('alexandra'), false);
+insert into user_credential(user_id, name, surname) values (10, 'Alexandra', 'Dubrovskaya');
 
-insert into user(id, login, password_hash, is_blocked) values (11, 'larisa', md5('larisa'), true);
-insert into credential(id, user_id, name, surname) values (11, 11, 'Larisa', 'Solovyeva');
-update user set credential_id = 11 where id = 11;
+insert into user(login, password, is_blocked) values ('larisa', md5('larisa'), true);
+insert into user_credential(user_id, name, surname) values (11, 'Larisa', 'Solovyeva');
 
-insert into user(id, login, password_hash, is_blocked) values (12, 'julia', md5('julia'), true);
-insert into credential(id, user_id, name, surname) values (12, 12, 'Julia', 'Grakina');
-update user set credential_id = 12 where id = 12;
-
-insert into subject(id, name) values (1, 'Russian language');
-
-insert into subject(id, name) values (2, 'English language');
-
-insert into subject(id, name) values (3, 'Mathematics');
+insert into user(login, password, is_blocked) values ('julia', md5('julia'), true);
+insert into user_credential(user_id, name, surname) values (12, 'Julia', 'Grakina');

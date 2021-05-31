@@ -3,6 +3,8 @@ package com.epam.web.controller;
 import com.epam.web.command.Command;
 import com.epam.web.command.CommandFactory;
 import com.epam.web.command.CommandResult;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,11 +15,13 @@ import java.io.IOException;
 
 public class Controller extends HttpServlet {
 
+    private static final Logger LOGGER = LogManager.getLogger("mainLogger");
+
     private final CommandFactory commandFactory = new CommandFactory();
 
     private static final String COMMAND = "command";
     private static final String ERROR_MESSAGE = "errorMessage";
-    private static final String ERROR_PAGE = "/WEB-INF/view/error.jsp";
+    private static final String ERROR_PAGE = "/error.jsp";
     private static final String CONTROLLER_COMMAND = "/controller?command=";
 
     @Override
@@ -42,7 +46,9 @@ public class Controller extends HttpServlet {
             page = result.getPage();
             isRedirect = result.isRedirect();
         } catch (Exception e) {
+            LOGGER.error(e.getMessage(), e);
             request.setAttribute(ERROR_MESSAGE, e.getMessage());
+            e.printStackTrace();
             page = ERROR_PAGE;
         }
 

@@ -2,6 +2,7 @@ package com.epam.web.filter;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class LocalizationFilter implements Filter {
@@ -10,17 +11,17 @@ public class LocalizationFilter implements Filter {
     private static final String LANGUAGE = "lang";
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig) {
     }
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
+        HttpServletRequest request = (HttpServletRequest) servletRequest;
 
-        if (httpServletRequest.getParameter(LOCALE_SESSION) != null) {
+        if (request.getParameter(LOCALE_SESSION) != null) {
 
-            httpServletRequest.getSession().setAttribute(LANGUAGE,
-                    httpServletRequest.getParameter(LOCALE_SESSION));
+            request.getSession().setAttribute(LANGUAGE,
+                    request.getParameter(LOCALE_SESSION));
         }
 
         filterChain.doFilter(servletRequest, servletResponse);

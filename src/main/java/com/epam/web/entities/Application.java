@@ -1,17 +1,21 @@
 package com.epam.web.entities;
 
+import java.util.List;
+
 public class Application implements Identifiable {
 
     private final Long id;
-    private final Faculty faculty;
-    private final Integer[] subjectsScore;
+    private final Long userId;
+    private final Long facultyId;
     private final Integer certificateScore;
+    private final List<Integer> subjectsScores;
 
-    public Application(Long id, Faculty faculty, Integer[] subjectsScore, Integer certificateScore) {
+    public Application(Long id, Long userId, Long facultyId, Integer certificateScore, List<Integer> subjectsScores) {
         this.id = id;
-        this.faculty = faculty;
-        this.subjectsScore = subjectsScore;
+        this.userId = userId;
+        this.facultyId = facultyId;
         this.certificateScore = certificateScore;
+        this.subjectsScores = subjectsScores;
     }
 
     @Override
@@ -19,15 +23,19 @@ public class Application implements Identifiable {
         return id;
     }
 
-    public Faculty getFaculty() {
-        return faculty;
+    public Long getUserId() {
+        return userId;
     }
 
-    public Integer[] getSubjectsScore() {
-        return subjectsScore;
+    public Long getFacultyId() {
+        return facultyId;
     }
 
-    public Integer getCertificate() {
+    public Integer getCertificateScore() {
         return certificateScore;
+    }
+
+    public List<Integer> getSubjectsScores() {
+        return subjectsScores;
     }
 }

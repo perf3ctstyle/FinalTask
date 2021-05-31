@@ -1,24 +1,30 @@
 package com.epam.web.mapper;
 
 import com.epam.web.entities.User;
-import com.epam.web.enums.UserFields;
-import com.epam.web.enums.UserRoles;
+import com.epam.web.enums.UserRole;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserRowMapper implements Mapper<User> {
+
+    private static final String ID = "ID";
+    private static final String LOGIN = "LOGIN";
+    private static final String PASSWORD = "PASSWORD";
+    private static final String ROLE = "ROLE";
+    private static final String IS_BLOCKED = "IS_BLOCKED";
+
     @Override
     public User map(ResultSet resultSet) throws SQLException {
-        Long id = resultSet.getLong(UserFields.ID.toString());
+        Long id = resultSet.getLong(ID);
 
-        String login = resultSet.getString(UserFields.LOGIN.toString());
-        String password = resultSet.getString(UserFields.PASSWORD.toString());
+        String login = resultSet.getString(LOGIN);
+        String password = resultSet.getString(PASSWORD);
 
-        String stringRole = resultSet.getString(UserFields.ROLE.toString());
-        UserRoles userRole = UserRoles.valueOf(stringRole);
+        String stringRole = resultSet.getString(ROLE);
+        UserRole userRole = UserRole.valueOf(stringRole);
 
-        boolean isBlocked = resultSet.getBoolean(UserFields.IS_BLOCKED.toString());
+        boolean isBlocked = resultSet.getBoolean(IS_BLOCKED);
 
         return new User(id, login, password, userRole, isBlocked);
     }

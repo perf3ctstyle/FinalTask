@@ -1,6 +1,6 @@
 package com.epam.web.connection;
 
-import com.epam.web.exception.ConnectionException;
+import com.epam.web.exception.ConnectionPoolException;
 
 import java.sql.Connection;
 import java.util.*;
@@ -70,7 +70,7 @@ public class ConnectionPool {
 
             return connection;
         } catch (InterruptedException e) {
-            throw new ConnectionException(e);
+            throw new ConnectionPoolException(e);
         } finally {
             connectionLock.unlock();
         }

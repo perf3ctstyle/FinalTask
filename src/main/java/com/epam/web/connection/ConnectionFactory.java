@@ -1,14 +1,12 @@
 package com.epam.web.connection;
 
-import com.epam.web.exception.ConnectionException;
+import com.epam.web.exception.ConnectionPoolException;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Properties;
 
 public class ConnectionFactory {
@@ -19,7 +17,7 @@ public class ConnectionFactory {
     private static final String PASSWORD = "database.password";
     private static final String DRIVER = "database.driver";
 
-    public Connection createConnection() throws ConnectionException {
+    public Connection createConnection() throws ConnectionPoolException {
         try (InputStream inputStream =
                      ConnectionFactory.class.getClassLoader().getResourceAsStream(PROPERTIES)) {
 
@@ -34,7 +32,7 @@ public class ConnectionFactory {
 
             return DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
         } catch (IOException | SQLException | ClassNotFoundException e) {
-            throw new ConnectionException(e);
+            throw new ConnectionPoolException(e.getMessage(), e);
         }
     }
 }

@@ -1,16 +1,16 @@
 package com.epam.web.entities;
 
-import com.epam.web.enums.UserRoles;
+import com.epam.web.enums.UserRole;
 
 public class User implements Identifiable {
 
     private final Long id;
     private final String login;
     private final String password;
-    private final UserRoles role;
+    private final UserRole role;
     private final boolean isBlocked;
 
-    public User(Long id, String login, String password, UserRoles role, boolean isBlocked) {
+    public User(Long id, String login, String password, UserRole role, boolean isBlocked) {
         this.id = id;
         this.login = login;
         this.password = password;
@@ -31,7 +31,7 @@ public class User implements Identifiable {
         return password;
     }
 
-    public UserRoles getRole() {
+    public UserRole getRole() {
         return role;
     }
 

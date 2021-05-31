@@ -1,14 +1,14 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
 <c:set var="lang" value="${not empty param.lang ? param.lang : not empty sessionScope.lang ? sessionScope.lang : pageContext.request.locale}" scope="session" />
+
 <fmt:setLocale value="${lang}" scope="session"/>
 <fmt:setBundle basename="language" scope="session"/>
 
 <html lang="${lang}">
 <head>
-    <title><fmt:message key="local.header.text"/></title>
+    <title><fmt:message key="local.title"/></title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/style.css"/>
 </head>
 <body>
@@ -26,7 +26,7 @@
                    name="username"/>
         </div>
         <div class="input-field">
-            <input class="text-input" type="password" placeholder="<fmt:message key="local.index.password" />"
+            <input class="text-input" type="password" placeholder="<fmt:message key="local.index.password"/>"
                    name="password"/>
         </div>
         <div>
@@ -42,12 +42,12 @@
             </div>
         </div>
         <c:if test="${invalidLogin == true}">
-            <div class="invalidLoginMessage">
+            <div class="invalid">
                 <fmt:message key="local.index.invalid.login"/>
             </div>
         </c:if>
         <c:if test="${isBlocked == true}">
-            <div class="invalidLoginMessage">
+            <div class="invalid">
                 <fmt:message key="local.index.invalid.login.blocked"/>
             </div>
         </c:if>

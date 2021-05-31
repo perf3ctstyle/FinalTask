@@ -50,6 +50,17 @@ body {
     transition-duration: 0.4s;
 }
 
+.footer {
+    right: 0;
+    bottom: 0;
+    margin: 0;
+    width: 100%;
+    border: 2px solid black;
+    position: fixed;
+    background-color: cadetblue;
+    text-align: center;
+}
+
 .sidenav {
     height: 100%;
     position: fixed;
@@ -117,10 +128,12 @@ body {
 }
 
 .button {
+    border: 2px solid black;
     -webkit-appearance: button;
     -moz-appearance: button;
     cursor: pointer;
     border-radius: 7px;
+    text-decoration: none;
 }
 
 .button:hover {
@@ -129,7 +142,7 @@ body {
 }
 
 .main-content-container {
-    margin-left: 135px;
+    margin-left: 160px;
 
 }
 
@@ -185,7 +198,7 @@ body {
     margin-right: 10px;
 }
 
-.plan-about-apply {
+.buttons {
     display: inline-block;
     float: right;
     margin-right: 9px;
@@ -258,7 +271,8 @@ body {
     font-weight: 700;
 }
 
-.paragraph {
+.faculty-paragraph {
+    text-align: center;
     margin-top: 20px;
 }
 
@@ -306,7 +320,19 @@ body {
     transform: translate(-50%, -50%);
 }
 
+.return-button {
+    margin-top: 0.83em;
+    background: #4E9CAF;
+    padding: 5px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    line-height: 15px;
+}
+
 .apply-title {
+    border: 1px solid black;
+    background-color: cadetblue;
     font-size: 17px;
     padding: 3px;
     color: white;
@@ -320,8 +346,14 @@ body {
     margin: 15px;
 }
 
-.invalidLoginMessage {
+.invalid {
     color: #FF0000;
+    font-weight: 700;
+    margin-top: 10px;
+}
+
+.successful {
+    color: green;
     font-weight: 700;
     margin-top: 10px;
 }
@@ -335,6 +367,10 @@ body {
     margin: 7px 0px 0px 0px;
 }
 
+.pagination a:active {
+    background-color: #4E9CAF;
+}
+
 .pagination a {
     color: black;
     float: left;
@@ -344,7 +380,7 @@ body {
     border: 1px solid #ddd;
 }
 
-.pagination a.active {
+.pagination a:active {
     background-color: #426e70;
     color: white;
     border: 2px solid black;
@@ -354,7 +390,7 @@ body {
     background-color: #bfd8d9;
 }
 
-.abiturient {
+.user {
     display: inline-block;
     width: 97%;
     background: #7eb1b3;
@@ -365,12 +401,12 @@ body {
     border: 3px solid black;
 }
 
-.abiturient-name {
+.applicant-name {
     text-decoration: underline;
 }
 
-.abiturient-name:hover {
-    color: #fff;
+.applicant-name:hover {
+    color: #ffffff;
 }
 
 .abiturient-score {
@@ -379,12 +415,18 @@ body {
     margin-right: 10px;
 }
 
-.score-about {
-    display: inline-block;
+.first-entity-button {
+    background: #4E9CAF;
+    padding: 5px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    line-height: 15px;
     float: right;
 }
 
-.details-button {
+.second-entity-button {
+    margin-left: 10px;
     background: #4E9CAF;
     padding: 5px;
     text-align: center;
@@ -398,24 +440,20 @@ body {
     margin-left: 160px;
 }
 
-#scores {
+.abiturient-info {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 80%;
     margin-left: 60px;
-
+    margin-bottom: 10px;
 }
 
-#scores td, #scores th {
-    border: 1px solid #ddd;
+.abiturient-info td, .abiturient-info th {
+    border: 1px solid black;
     padding: 8px;
 }
 
-#scores tr:nth-child(even){background-color: #f2f2f2;}
-
-#scores tr:hover {background-color: #ddd;}
-
-#scores th {
+.abiturient-info th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
@@ -427,6 +465,20 @@ body {
     margin-left: 60px;
     width: 80%;
     text-align: center;
+}
+
+.get-faculties {
+    text-align: center;
+    margin-top: 14px;
+}
+
+.get-faculties-button {
+    background: #4E9CAF;
+    padding: 5px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    line-height: 15px;
 }
 
 @media only screen and (max-width: 768px) {
@@ -477,7 +529,7 @@ body {
         margin-top: 60px;
     }
 
-    .abiturient {
+    .user {
         width: 95%;
         font-size: 14px;
     }
@@ -537,7 +589,8 @@ body {
         font-size: 14px;
     }
 
-    .paragraph {
+    .faculty-paragraph {
+        text-align: center;
         font-size: 13px;
     }
 
@@ -545,7 +598,7 @@ body {
         margin-left: 40px;
     }
 
-    .abiturient {
+    .user {
         font-size: 12px;
         padding: 9px;
     }

@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="ftr" uri="footerTag" %>
 
 <fmt:setLocale value="${sessionScope.lang}" scope="session"/>
 <fmt:setBundle basename="language" scope="session"/>
@@ -12,7 +13,7 @@
 <body>
 
 <div class="sidenav">
-    <jsp:include page="fragments/menu.jsp"/>
+    <jsp:include page="fragments/menu-admin.jsp"/>
 </div>
 
 <div class="header">
@@ -20,32 +21,32 @@
 </div>
 
 <div class="main-content-container admin-content-container">
-    <div id="main-content-heading" class="abiturient admin-content-heading">
-        Ivan Ivanov
+    <div id="main-content-heading" class="user admin-content-heading">
+        ${name} ${surname}
     </div>
-    <table id="scores">
+    <table class="abiturient-info">
+        <tr>
+            <th><fmt:message key="local.faculty.name"/></th>
+            <th>${facultyName}</th>
+        </tr>
+    </table>
+    <table class="abiturient-info">
         <tr>
             <th></th>
             <th><fmt:message key="local.apply.score"/></th>
         </tr>
-        <tr>
-            <th><fmt:message key="local.abiturient.subject.first"/></th>
-            <th>100</th>
-        </tr>
-        <tr>
-            <th><fmt:message key="local.abiturient.subject.second"/></th>
-            <th>100</th>
-        </tr>
-        <tr>
-            <th><fmt:message key="local.abiturient.subject.third"/></th>
-            <th>100</th>
-        </tr>
+        <c:forEach var="subjectScore" items="${subjectsScoreList}">
+            <tr>
+                <th><fmt:message key="local.abiturient.subject"/></th>
+                <th>${subjectScore}</th>
+            </tr>
+        </c:forEach>
         <tr>
             <th><fmt:message key="local.abiturient.certificate"/></th>
-            <th>100</th>
+            <th>${certificateScore}</th>
         </tr>
     </table>
 </div>
-
+<ftr:footerTag currentYear="2021"/>
 </body>
 </html>
