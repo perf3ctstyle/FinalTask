@@ -38,8 +38,8 @@
 
         <c:if test="${isSelectedFacultyValid == false}">
             <div class="invalid">
-                Unfortunately, the selected faculty wasn't found. <br />
-                Please, try again.
+                <fmt:message key="local.apply.faculty.select.error"/> <br />
+                <fmt:message key="local.error.try.again"/>
             </div>
         </c:if>
 
@@ -53,8 +53,8 @@
 
         <c:if test="${isCertificateScoreValid == false}">
             <div class="invalid">
-                Unfortunately, the certificate score had an inadmissible value. <br />
-                Please, try again.
+                <fmt:message key="local.apply.score.certificate.error"/> <br />
+                <fmt:message key="local.error.try.again"/>
             </div>
         </c:if>
 
@@ -84,8 +84,8 @@
 
         <c:if test="${areSubjectsScoresValid == false}">
             <div class="invalid">
-                Unfortunately, some of the subjects scores had an inadmissible value. <br />
-                Please, try again.
+                <fmt:message key="local.apply.score.subject.error"/> <br />
+                <fmt:message key="local.error.try.again"/>
             </div>
         </c:if>
 
@@ -96,14 +96,14 @@
 
         <c:if test="${applicationExists == true}">
             <div class="invalid">
-                You've already applied to one of the faculties. <br />
-                Unfortunately, you cannot send another application.
+                <fmt:message key="local.apply.error.application.exists"/> <br />
+                <fmt:message key="local.apply.failure"/>
             </div>
         </c:if>
 
         <c:if test="${applicationSaved == true}">
             <div class="successful">
-                Your application has been successfully saved.
+                <fmt:message key="local.apply.success"/>
             </div>
         </c:if>
     </form>
