@@ -14,13 +14,7 @@
         key="local.menu.applications"/></a>
 <a id="registers" href="${pageContext.request.contextPath}/controller?command=getRegistersPage"><fmt:message
         key="local.menu.register"/></a>
-<div id="menu-dropdown" class="dropdown">
-    <button id="menu-dropbtn" class="dropbtn"><fmt:message key="local.button.language"/></button>
-    <div class="menu-dropdown-content dropdown-content" style="left:0">
-        <a href="${pageContext.servletContext.contextPath}/controller?command=${param.get("command")}&lang=en">English</a>
-        <a href="${pageContext.servletContext.contextPath}/controller?command=${param.get("command")}&lang=ru">Русский</a>
-        <a href="${pageContext.servletContext.contextPath}/controller?command=${param.get("command")}&lang=by">Беларуская</a>
-    </div>
-</div>
+<a id="admitted" href="${pageContext.request.contextPath}/controller?command=getAdmittedAbiturientsPage"><fmt:message
+        key="local.menu.admitted"/></a>
 </body>
 </html>

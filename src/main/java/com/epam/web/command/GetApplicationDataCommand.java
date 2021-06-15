@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
-public class GetApplyPageInfoCommand implements Command {
+public class GetApplicationDataCommand implements Command {
 
     private final FacultyService facultyService;
 
@@ -18,11 +18,15 @@ public class GetApplyPageInfoCommand implements Command {
     private static final String FACULTY_LIST = "facultyList";
     private static final int OFFSET = 0;
 
-    private static final String ERROR_PAGE = "error";
+    private static final String ROLE = "role";
+    private static final String ADMIN = "ADMIN";
 
+    private static final String SHOW_APPLICATION_CHANGE = "showApplicationChangePage";
     private static final String SHOW_APPLY_PAGE = "showApplyPage";
 
-    public GetApplyPageInfoCommand(FacultyService facultyService) {
+    private static final String ERROR_PAGE = "error";
+
+    public GetApplicationDataCommand(FacultyService facultyService) {
         this.facultyService = facultyService;
     }
 
@@ -39,6 +43,14 @@ public class GetApplyPageInfoCommand implements Command {
         } else {
             return CommandResult.redirect(ERROR_PAGE);
         }
-        return CommandResult.redirect(SHOW_APPLY_PAGE);
+
+        Object roleObject = httpSession.getAttribute(ROLE);
+        String role = roleObject.toString();
+
+        if (role.equals(ADMIN)) {
+            return CommandResult.redirect(SHOW_APPLICATION_CHANGE);
+        } else {
+            return CommandResult.redirect(SHOW_APPLY_PAGE);
+        }
     }
 }

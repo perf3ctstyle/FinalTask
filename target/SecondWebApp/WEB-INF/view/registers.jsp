@@ -29,13 +29,16 @@
 
     <c:forEach var="credential" items="${credentialList}" varStatus="status">
         <div class="user">
-            <a href="${pageContext.request.contextPath}/controller?command=getAbiturientInfoPage&id=${credential.userId}&name=${credential.name}&surname=${credential.surname}" class="applicant-name">
-                <fmt:message key="local.users.register"/> ${credential.name} ${credential.surname}
-            </a>
+            <fmt:message key="local.users.register"/> ${credential.name} ${credential.surname}
+            <c:choose>
+                <c:when test="${isRegisterApprovedList[status.index] == true}">
+                    <fmt:message key="local.register.approved"/>
+                </c:when>
+                <c:otherwise>
+                    <fmt:message key="local.register.declined"/>
+                </c:otherwise>
+            </c:choose>
             <div class="buttons">
-                <a href="${pageContext.request.contextPath}/controller?command=getAbiturientInfoPage&id=${credential.userId}&name=${credential.name}&surname=${credential.surname}" class="button second-entity-button">
-                    <fmt:message key="local.users.button.details"/>
-                </a>
                 <a href="${pageContext.request.contextPath}/controller?command=deleteRegister&id=${registerIdList[status.index]}" class="button first-entity-button">
                     <fmt:message key="local.button.delete"/>
                 </a>
@@ -61,8 +64,8 @@
         </div>
     </div>
     <div class="get-faculties">
-        <a href="${pageContext.request.contextPath}/controller?command=getFacultyListPage" class="button get-faculties-button">
-            <fmt:message key="local.button.faculty.admitted.get"/>
+        <a href="${pageContext.request.contextPath}/controller?command=saveAdmittedAbiturients" class="button save-admitted-abiturients-button">
+            <fmt:message key="local.button.faculty.admitted.save"/>
         </a>
     </div>
 </div>

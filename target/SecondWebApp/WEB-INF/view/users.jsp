@@ -35,7 +35,7 @@
                 <c:choose>
                     <c:when test="${credential.userId == id}"/>
                     <c:otherwise>
-                        <a href="${pageContext.request.contextPath}/controller?command=blockUnblockUser&id=${credential.userId}"
+                        <a href="${pageContext.request.contextPath}/controller?command=changeIsUserBlocked&id=${credential.userId}"
                            class="button second-entity-button">
                             <c:choose>
                                 <c:when test="${isUserBlockedList[status.index] == false}">

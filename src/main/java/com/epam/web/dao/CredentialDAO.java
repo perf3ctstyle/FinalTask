@@ -13,10 +13,10 @@ public class CredentialDao extends AbstractDao<Credential> {
 
     private static final String FIND_BY_USER_ID = "SELECT * FROM USER_CREDENTIAL WHERE USER_ID = ?";
     private static final String FIND_BY_NAME_AND_SURNAME = "SELECT * FROM USER_CREDENTIAL WHERE NAME = ? AND SURNAME = ?";
-    private static final String CREATE_CREDENTIAL = "INSERT INTO USER_CREDENTIAL (NAME, SURNAME) " +
-            "VALUES (?, ?)";
+    private static final String CREATE_CREDENTIAL = "INSERT INTO USER_CREDENTIAL (USER_ID, NAME, SURNAME) " +
+            "VALUES (?, ?, ?)";
     private static final String UPDATE_CREDENTIAL = "UPDATE USER_CREDENTIAL SET NAME = ?, SURNAME = ?, " +
-            "WHERE USER_ID = ?";
+            "WHERE ID = ?";
     private static final String DELETE_BY_USER_ID = "DELETE FROM USER_CREDENTIAL WHERE USER_ID = ?";
     private static final String TABLE = "USER_CREDENTIAL";
 
@@ -38,7 +38,7 @@ public class CredentialDao extends AbstractDao<Credential> {
 
     @Override
     protected void create(Credential credential) throws DaoException {
-        executeUpdate(CREATE_CREDENTIAL, credential.getName(), credential.getSurname(), credential.getId());
+        executeUpdate(CREATE_CREDENTIAL, credential.getUserId(), credential.getName(), credential.getSurname());
     }
 
     @Override

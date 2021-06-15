@@ -19,6 +19,7 @@ create table user_credential (
     name VARCHAR(255),
     surname VARCHAR(255),
     FOREIGN KEY (user_id) REFERENCES user(id)
+    ON DELETE CASCADE
 );
 
 create table user_application (
@@ -29,15 +30,24 @@ create table user_application (
     first_subject_score INT,
     second_subject_score INT,
     third_subject_score INT,
-    FOREIGN KEY (user_id) REFERENCES user(id),
-    FOREIGN KEY (faculty_id) REFERENCES faculty(id)
+    FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE,
+    FOREIGN KEY (faculty_id) REFERENCES faculty(id) ON DELETE CASCADE
 );
 
 create table register (
     id BIGINT UNIQUE PRIMARY KEY NOT NULL AUTO_INCREMENT,
     user_id BIGINT,
-    application_id BIGINT,
+    faculty_id BIGINT,
+    score_sum INT,
     is_approved BOOLEAN,
-    FOREIGN KEY (user_id) REFERENCES user(id),
-    FOREIGN KEY (application_id) REFERENCES user_application(id)
+    FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE,
+    FOREIGN KEY (faculty_id) REFERENCES faculty(id) ON DELETE CASCADE
+);
+
+create table admitted_abiturient (
+    id BIGINT UNIQUE PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    user_id BIGINT,
+    faculty_id BIGINT,
+    FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE,
+    FOREIGN KEY (faculty_id) REFERENCES faculty(id) ON DELETE CASCADE
 );

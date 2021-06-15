@@ -10,15 +10,7 @@
 <body>
 <a id="main" href="${pageContext.servletContext.contextPath}/controller?command=getFacultyListPage"><fmt:message
         key="local.menu.faculties"/></a>
-<a id="apply" href="${pageContext.servletContext.contextPath}/controller?command=getApplyPage"><fmt:message
+<a id="apply" href="${pageContext.servletContext.contextPath}/controller?command=getApplicationData"><fmt:message
         key="local.button.apply"/></a>
-<div id="menu-dropdown" class="dropdown">
-    <button id="menu-dropbtn" class="dropbtn"><fmt:message key="local.button.language"/></button>
-    <div class="menu-dropdown-content dropdown-content" style="left:0">
-        <a href="${pageContext.servletContext.contextPath}/controller?command=${param.get("command")}&lang=en">English</a>
-        <a href="${pageContext.servletContext.contextPath}/controller?command=${param.get("command")}&lang=ru">Русский</a>
-        <a href="${pageContext.servletContext.contextPath}/controller?command=${param.get("command")}&lang=by">Беларуская</a>
-    </div>
-</div>
 </body>
 </html>

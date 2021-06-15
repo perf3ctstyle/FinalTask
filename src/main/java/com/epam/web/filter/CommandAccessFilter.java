@@ -16,25 +16,31 @@ public class CommandAccessFilter implements Filter {
 
     private final Map<UserRole, List<String>> accessMap = new HashMap<>();
     private final List<String> mutualCommands = new ArrayList<>();
+    private final List<String> identificationCommands = new ArrayList<>();
 
     private static final String LOGIN = "login";
-    private static final String INVALID_LOGIN = "invalidLogin";
+    private static final String GET_LOGIN = "getLoginPage";
+    private static final String SIGN_UP = "signUp";
+    private static final String GET_SIGN_UP = "getSignUpPage";
     private static final String LOGOUT = "logout";
     private static final String GET_FACULTY_LIST = "getFacultyListPage";
     private static final String GET_ADMIN_MAIN = "getAdminMainPage";
     private static final String GET_FACULTY_PAGE = "getFacultyPage";
     private static final String SHOW_FACULTY_PAGE = "showFacultyPage";
-    private static final String GET_APPLY_PAGE = "getApplyPage";
+    private static final String GET_APPLICATION_DATA = "getApplicationData";
     private static final String SHOW_APPLY_PAGE = "showApplyPage";
     private static final String SAVE_APPLICATION = "saveApplication";
     private static final String GET_APPLICATIONS_PAGE = "getApplicationsPage";
-    private static final String APPROVE_DECLINE_APPLICATION = "approveDeclineApplication";
+    private static final String UPDATE_APPLICATION = "updateApplication";
+    private static final String APPROVE_APPLICATION = "approveApplication";
     private static final String GET_ABITURIENT_INFO = "getAbiturientInfoPage";
     private static final String SHOW_ABITURIENT_INFO = "showAbiturientInfoPage";
+    private static final String SHOW_APPLICATION_CHANGE = "showApplicationChangePage";
     private static final String GET_REGISTERS_PAGE = "getRegistersPage";
     private static final String DELETE_REGISTER = "deleteRegister";
+    private static final String SAVE_ADMITTED_ABITURIENTS = "saveAdmittedAbiturients";
     private static final String GET_ADMITTED_ABITURIENTS = "getAdmittedAbiturientsPage";
-    private static final String BLOCK_UNBLOCK_USER = "blockUnblockUser";
+    private static final String CHANGE_IS_USER_BLOCKED = "changeIsUserBlocked";
     private static final String DELETE_USER = "deleteUser";
     private static final String ERROR = "error";
 
@@ -57,15 +63,18 @@ public class CommandAccessFilter implements Filter {
     private static final String UNKNOWN_USER_ROLE = "Unknown user role!";
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig) {
         accessMap.put(UserRole.ABITURIENT, Arrays.asList(GET_FACULTY_PAGE,
-                SHOW_FACULTY_PAGE, GET_APPLY_PAGE, SHOW_APPLY_PAGE, SAVE_APPLICATION));
+                SHOW_FACULTY_PAGE, GET_APPLICATION_DATA, SHOW_APPLY_PAGE, SAVE_APPLICATION));
 
-        accessMap.put(UserRole.ADMIN, Arrays.asList(GET_ADMIN_MAIN, GET_APPLICATIONS_PAGE, APPROVE_DECLINE_APPLICATION,
-                GET_ABITURIENT_INFO, SHOW_ABITURIENT_INFO, GET_REGISTERS_PAGE, DELETE_REGISTER, GET_ADMITTED_ABITURIENTS,
-                BLOCK_UNBLOCK_USER, DELETE_USER));
+        accessMap.put(UserRole.ADMIN, Arrays.asList(GET_ADMIN_MAIN, GET_APPLICATIONS_PAGE, APPROVE_APPLICATION,
+                GET_APPLICATION_DATA, SHOW_APPLICATION_CHANGE, UPDATE_APPLICATION, GET_ABITURIENT_INFO, SHOW_ABITURIENT_INFO,
+                GET_REGISTERS_PAGE, DELETE_REGISTER, SAVE_ADMITTED_ABITURIENTS, GET_ADMITTED_ABITURIENTS, DELETE_USER,
+                CHANGE_IS_USER_BLOCKED));
 
-        mutualCommands.addAll(Arrays.asList(INVALID_LOGIN, LOGOUT, GET_FACULTY_LIST, ERROR));
+        mutualCommands.addAll(Arrays.asList(LOGOUT, GET_FACULTY_LIST, ERROR));
+
+        identificationCommands.addAll(Arrays.asList(LOGIN, GET_LOGIN, SIGN_UP, GET_SIGN_UP));
     }
 
     @Override
@@ -102,7 +111,7 @@ public class CommandAccessFilter implements Filter {
     private boolean checkCommandAccess(ServletRequest request) {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         String command = request.getParameter(COMMAND);
-        if (command.equals(LOGIN)) {
+        if (identificationCommands.contains(command)) {
             return true;
         }
 

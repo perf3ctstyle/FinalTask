@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Optional;
 
-public class BlockUnblockUserCommand implements Command {
+public class ChangeIsUserBlockedCommand implements Command {
 
     private static final Logger LOGGER = LogManager.getLogger("mainLogger");
 
@@ -19,8 +19,9 @@ public class BlockUnblockUserCommand implements Command {
     private static final String GET_ADMIN_MAIN = "getAdminMainPage";
     private static final String ID = "id";
     private static final String USER_WAS_NOT_FOUND = "User with the following userId wasn't found: ";
+    private static final String ERROR_PAGE = "error";
 
-    public BlockUnblockUserCommand(UserService userService) {
+    public ChangeIsUserBlockedCommand(UserService userService) {
         this.userService = userService;
     }
 
@@ -39,6 +40,7 @@ public class BlockUnblockUserCommand implements Command {
             userService.changeIsBlocked(updatedUserId, isUpdatedUserBlocked);
         } else {
             LOGGER.info(USER_WAS_NOT_FOUND + userId);
+            return CommandResult.redirect(ERROR_PAGE);
         }
         return CommandResult.redirect(GET_ADMIN_MAIN);
     }

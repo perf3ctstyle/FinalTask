@@ -1,0 +1,96 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="ftr" uri="footerTag" %>
+
+<fmt:setLocale value="${sessionScope.lang}" scope="session"/>
+<fmt:setBundle basename="language" scope="session"/>
+
+<html lang="${sessionScope.lang}">
+<head>
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/static/style.css"/>
+  <script type="text/javascript" src="${pageContext.request.contextPath}/static/limitNumberInput.js"></script>
+</head>
+<body>
+<div class="sidenav">
+  <jsp:include page="fragments/menu-admin.jsp"/>
+</div>
+
+<div class="header">
+  <jsp:include page="fragments/header-logged-in.jsp"/>
+</div>
+
+<form class="change-application-form"
+      action="${pageContext.request.contextPath}/controller?command=updateApplication" method="post">
+  <div class="change-info">
+    <fmt:message key="local.application.change.text"/>
+  </div>
+  <div class="input-field">
+    <fmt:message key="local.apply.faculty"/>
+    <select name="faculty">
+      <option value="" selected="selected"><fmt:message key="local.apply.faculty.select"/></option>
+      <c:forEach var="faculty" items="${facultyList}">
+        <option>${faculty.name}</option>
+      </c:forEach>
+    </select>
+  </div>
+  <div class="input-field">
+    <fmt:message key="local.apply.score.certificate"/> <br/>
+    <input class="text-input" id="certificate-input" type="number" maxlength="${scoreLength}"
+           oninput="limitNumberInput('certificate-input')"
+           placeholder="<fmt:message key="local.apply.score"/>"
+           name="certificate" required/>
+  </div>
+
+  <c:if test="${isCertificateScoreValid == false}">
+    <div class="invalid">
+      <fmt:message key="local.apply.score.certificate.error"/> <br/>
+      <fmt:message key="local.error.try.again"/>
+    </div>
+  </c:if>
+
+  <div class="input-field">
+    <fmt:message key="local.apply.score.subject.first"/>
+    <input class="text-input" id="first-user-subject-input" type="number" maxlength="${scoreLength}"
+           oninput="limitNumberInput('first-user-subject-input')"
+           placeholder="<fmt:message key="local.apply.score"/>"
+           name="firstSubjectScoreInput" required/>
+  </div>
+
+  <div class="input-field">
+    <fmt:message key="local.apply.score.subject.second"/>
+    <input class="text-input" id="second-user-subject-input" type="number" maxlength="${scoreLength}"
+           oninput="limitNumberInput('second-user-subject-input')"
+           placeholder="<fmt:message key="local.apply.score"/>"
+           name="secondSubjectScoreInput" required/>
+  </div>
+
+  <div class="input-field">
+    <fmt:message key="local.apply.score.subject.third"/>
+    <input class="text-input" id="third-user-subject-input" type="number" maxlength="${scoreLength}"
+           oninput="limitNumberInput('third-user-subject-input')"
+           placeholder="<fmt:message key="local.apply.score"/>"
+           name="thirdSubjectScoreInput" required/>
+  </div>
+
+  <c:if test="${areSubjectsScoresValid == false}">
+    <div class="invalid">
+      <fmt:message key="local.apply.score.subject.error"/> <br/>
+      <fmt:message key="local.error.try.again"/>
+    </div>
+  </c:if>
+
+  <div>
+    <button class="button change-info-button" type="submit" value="updateApplication"><fmt:message
+            key="local.button.application.change"/></button>
+  </div>
+
+  <c:if test="${applicationChanged == true}">
+    <div class="successful">
+      <fmt:message key="local.application.change.success"/>
+    </div>
+  </c:if>
+</form>
+<ftr:footerTag currentYear="2021"/>
+</body>
+</html>

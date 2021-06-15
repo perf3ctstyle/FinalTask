@@ -4,7 +4,6 @@ import com.epam.web.dao.DaoHelper;
 import com.epam.web.dao.DaoHelperFactory;
 import com.epam.web.dao.FacultyDao;
 import com.epam.web.entities.Faculty;
-import com.epam.web.enums.DaoType;
 import com.epam.web.exception.DaoException;
 import com.epam.web.exception.ServiceException;
 
@@ -14,17 +13,17 @@ import java.util.Optional;
 public class FacultyService {
 
     private final DaoHelperFactory daoHelperFactory;
-    private final DaoType daoType;
 
-    public FacultyService(DaoHelperFactory daoHelperFactory, DaoType daoType) {
+    private static final String FACULTY_DAO = "FACULTY_DAO";
+
+    public FacultyService(DaoHelperFactory daoHelperFactory) {
         this.daoHelperFactory = daoHelperFactory;
-        this.daoType = daoType;
     }
 
     public Optional<Faculty> findById(long id) throws ServiceException {
 
         try (DaoHelper helper = daoHelperFactory.create()) {
-            FacultyDao facultyDao = (FacultyDao) helper.createDao(daoType);
+            FacultyDao facultyDao = (FacultyDao) helper.createDao(FACULTY_DAO);
 
             return facultyDao.findById(id);
         } catch (DaoException e) {
@@ -35,7 +34,7 @@ public class FacultyService {
     public Optional<Faculty> findByName(String name) throws ServiceException {
 
         try (DaoHelper helper = daoHelperFactory.create()) {
-            FacultyDao facultyDao = (FacultyDao) helper.createDao(daoType);
+            FacultyDao facultyDao = (FacultyDao) helper.createDao(FACULTY_DAO);
 
             return facultyDao.findByName(name);
         } catch (DaoException e) {
@@ -46,7 +45,7 @@ public class FacultyService {
     public List<Faculty> findLimitedNumberOfFaculties(int offset, int numberOfRecords) throws ServiceException {
 
         try (DaoHelper helper = daoHelperFactory.create()) {
-            FacultyDao facultyDao = (FacultyDao) helper.createDao(daoType);
+            FacultyDao facultyDao = (FacultyDao) helper.createDao(FACULTY_DAO);
 
             return facultyDao.findLimitedNumberOfEntities(offset, numberOfRecords);
         } catch (DaoException e) {
@@ -57,7 +56,7 @@ public class FacultyService {
     public int countFaculties() throws ServiceException {
 
         try (DaoHelper helper = daoHelperFactory.create()) {
-            FacultyDao facultyDao = (FacultyDao) helper.createDao(daoType);
+            FacultyDao facultyDao = (FacultyDao) helper.createDao(FACULTY_DAO);
 
             return facultyDao.findAll().size();
         } catch (DaoException e) {

@@ -28,6 +28,7 @@ public class GetRegistersByPageCommand implements Command {
     private static final int DEFAULT_RECORDS_PER_PAGE = 5;
 
     private static final String REGISTER_ID_LIST = "registerIdList";
+    private static final String IS_REGISTER_APPROVED_LIST = "isRegisterApprovedList";
     private static final String CREDENTIAL_LIST = "credentialList";
     private static final String NUMBER_OF_PAGES = "numberOfPages";
     private static final String CURRENT_PAGE = "currentPage";
@@ -55,6 +56,7 @@ public class GetRegistersByPageCommand implements Command {
         List<Register> receivedRegistersList = registerService.findLimitedNumberOfRegisters((page-1)*recordsPerPage, recordsPerPage);
 
         List<Long> registerIdList = new ArrayList<>();
+        List<Boolean> isRegisterApprovedList = new ArrayList<>();
         List<Credential> credentialList = new ArrayList<>();
         for (Register register : receivedRegistersList) {
             long userId = register.getUserId();
@@ -66,6 +68,9 @@ public class GetRegistersByPageCommand implements Command {
 
                 long registerId = register.getId();
                 registerIdList.add(registerId);
+
+                boolean isRegisterApproved = register.isApproved();
+                isRegisterApprovedList.add(isRegisterApproved);
             } else {
                 LOGGER.info(CREDENTIAL_WAS_NOT_FOUND_BY_USER_ID + userId);
             }
@@ -75,6 +80,7 @@ public class GetRegistersByPageCommand implements Command {
         int numberOfPages = (int) Math.ceil(numberOfRecords * 1.0 / recordsPerPage);
 
         request.setAttribute(REGISTER_ID_LIST, registerIdList);
+        request.setAttribute(IS_REGISTER_APPROVED_LIST, isRegisterApprovedList);
         request.setAttribute(CREDENTIAL_LIST, credentialList);
         request.setAttribute(NUMBER_OF_PAGES, numberOfPages);
         request.setAttribute(CURRENT_PAGE, page);

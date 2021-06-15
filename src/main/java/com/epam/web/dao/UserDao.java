@@ -36,7 +36,7 @@ public class UserDao extends AbstractDao<User> {
     }
 
     protected void create(User user) throws DaoException {
-        executeUpdate(CREATE_USER, user.getLogin(), user.getPassword(), user.getRole().toString());
+        executeUpdate(CREATE_USER, user.getLogin(), user.getPassword(), user.getRole().toString(), user.isBlocked());
     }
 
     protected void update(User user) throws DaoException {

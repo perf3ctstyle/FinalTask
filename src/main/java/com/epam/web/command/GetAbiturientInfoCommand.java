@@ -1,12 +1,12 @@
 package com.epam.web.command;
 
 import com.epam.web.entities.Application;
-import com.epam.web.entities.Credential;
 import com.epam.web.entities.Faculty;
 import com.epam.web.exception.ServiceException;
 import com.epam.web.service.ApplicationService;
-import com.epam.web.service.CredentialService;
 import com.epam.web.service.FacultyService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,10 +16,13 @@ import java.util.Optional;
 
 public class GetAbiturientInfoCommand implements Command {
 
+    private static final Logger LOGGER = LogManager.getLogger("mainLogger");
+
     private final ApplicationService applicationService;
     private final FacultyService facultyService;
 
     private static final String ID = "id";
+    private static final String ABITURIENT_ID = "abiturientId";
     private static final String NAME = "name";
     private static final String SURNAME = "surname";
     private static final String SUBJECTS_SCORE_LIST = "subjectsScoreList";
@@ -56,6 +59,7 @@ public class GetAbiturientInfoCommand implements Command {
                 Integer certificateScore = application.getCertificateScore();
 
                 HttpSession httpSession = request.getSession();
+                httpSession.setAttribute(ABITURIENT_ID, userId);
                 httpSession.setAttribute(NAME, name);
                 httpSession.setAttribute(SURNAME, surname);
                 httpSession.setAttribute(SUBJECTS_SCORE_LIST, subjectsScoreList);
@@ -67,6 +71,7 @@ public class GetAbiturientInfoCommand implements Command {
         } else {
             return CommandResult.redirect(ERROR_PAGE);
         }
+
         return CommandResult.redirect(SHOW_ABITURIENT_INFO);
     }
 }

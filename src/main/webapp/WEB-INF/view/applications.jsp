@@ -37,11 +37,11 @@
                     <fmt:message key="local.users.button.details"/>
                 </a>
                 <c:if test="${isApplicationReviewedList[status.index] == false}">
-                    <a href="${pageContext.request.contextPath}/controller?command=approveDeclineApplication&id=${applicationIdList[status.index]}&approve=false"
+                    <a href="${pageContext.request.contextPath}/controller?command=approveApplication&id=${applicationIdList[status.index]}&approve=false"
                        class="button second-entity-button">
                         <fmt:message key="local.button.decline"/>
                     </a>
-                    <a href="${pageContext.request.contextPath}/controller?command=approveDeclineApplication&id=${applicationIdList[status.index]}&approve=true"
+                    <a href="${pageContext.request.contextPath}/controller?command=approveApplication&id=${applicationIdList[status.index]}&approve=true"
                        class="button second-entity-button">
                         <fmt:message key="local.button.approve"/>
                     </a>

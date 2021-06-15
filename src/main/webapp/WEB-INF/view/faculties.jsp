@@ -13,7 +13,7 @@
 </head>
 <body>
 <div class="sidenav">
-    <jsp:include page="fragments/menu-admin.jsp"/>
+    <jsp:include page="fragments/menu-user.jsp"/>
 </div>
 
 <div class="header">
@@ -25,17 +25,22 @@
         <span class="faculty-name">
             <fmt:message key="local.faculty.name"/>
         </span>
+        <span class="faculty-plan">
+            <fmt:message key="local.faculty.plan.admission"/>
+        </span>
     </div>
 
     <c:forEach var="faculty" items="${facultyList}">
         <div class="faculty">
-            <a href="${pageContext.request.contextPath}/controller?command=getAdmittedAbiturientsPage&name=${faculty.name}" class="faculty-name">
-                    ${faculty.name}
+            <a href="${pageContext.request.contextPath}/controller?command=getFacultyPage&name=${faculty.name}" class="faculty-name">
+                ${faculty.name}
             </a>
             <div class="buttons">
-                <a href="${pageContext.request.contextPath}/controller?command=getAdmittedAbiturientsPage&name=${faculty.name}" class="button first-entity-button">
-                    <fmt:message key="local.faculty.button.admitted"/>
-                </a>
+                <a href="${pageContext.request.contextPath}/controller?command=getFacultyPage&name=${faculty.name}"
+                   class="button about-button"><fmt:message key="local.faculty.button.about"/></a>
+                <a href="${pageContext.request.contextPath}/controller?command=getApplicationData"
+                   class="button apply-button"><fmt:message key="local.button.apply"/></a>
+                <span class="faculty-plan">${faculty.admissionPlan}</span>
             </div>
         </div>
     </c:forEach>

@@ -19,7 +19,7 @@ public class SaveApplicationCommand implements Command {
 
     private final ApplicationService applicationService;
     private final FacultyService facultyService;
-    private final ApplicationInfoValidator validator;
+    private final ApplicationInfoValidator applicationInfoValidator;
 
     private boolean isSelectedFacultyValid;
     private boolean isCertificateScoreValid;
@@ -38,16 +38,16 @@ public class SaveApplicationCommand implements Command {
     private static final String FACULTY_SELECT = "facultySelect";
 
     private static final String SHOW_APPLY_PAGE = "showApplyPage";
-    private static final String APPLY_JSP = "/WEB-INF/view/apply.jsp";
+    private static final String APPLY_PAGE = "/WEB-INF/view/apply.jsp";
 
     private static final int MAXIMUM_CERTIFICATE_SCORE = 100;
     private static final int MAXIMUM_SUBJECT_SCORE = 200;
 
     public SaveApplicationCommand(ApplicationService applicationService, FacultyService facultyService,
-                                  ApplicationInfoValidator validator) {
+                                  ApplicationInfoValidator applicationInfoValidator) {
         this.applicationService = applicationService;
         this.facultyService = facultyService;
-        this.validator = validator;
+        this.applicationInfoValidator = applicationInfoValidator;
         isSelectedFacultyValid = true;
         isCertificateScoreValid = true;
         areSubjectsScoresValid = true;
@@ -64,25 +64,25 @@ public class SaveApplicationCommand implements Command {
         Optional<Application> existingApplication = applicationService.findByUserId(userId);
         if (existingApplication.isPresent()) {
             httpSession.setAttribute(APPLICATION_EXISTS, true);
-            return CommandResult.forward(APPLY_JSP);
+            return CommandResult.forward(APPLY_PAGE);
         }
 
         Long facultyId = getSelectedFacultyId(request);
         if (!isSelectedFacultyValid) {
             request.setAttribute(IS_SELECTED_FACULTY_VALID, false);
-            return CommandResult.forward(APPLY_JSP);
+            return CommandResult.forward(APPLY_PAGE);
         }
 
         Integer certificateScore = getCertificateScore(request);
         if (!isCertificateScoreValid) {
             request.setAttribute(IS_CERTIFICATE_SCORE_VALID, false);
-            return CommandResult.forward(APPLY_JSP);
+            return CommandResult.forward(APPLY_PAGE);
         }
 
         List<Integer> subjectsScores = getSubjectsScores(request);
         if (!areSubjectsScoresValid) {
             request.setAttribute(ARE_SUBJECTS_SCORES_VALID, false);
-            return CommandResult.forward(APPLY_JSP);
+            return CommandResult.forward(APPLY_PAGE);
         }
 
         Application application = new Application(null, userId, facultyId, certificateScore,
@@ -103,7 +103,7 @@ public class SaveApplicationCommand implements Command {
                 thirdSubjectScoreString);
 
         for (String subjectScoreString : subjectsScoresStringList) {
-            if (!validator.validateScore(subjectScoreString, MAXIMUM_SUBJECT_SCORE)) {
+            if (!applicationInfoValidator.validateScore(subjectScoreString, MAXIMUM_SUBJECT_SCORE)) {
                 areSubjectsScoresValid = false;
                 return new ArrayList<>(); // returning an empty list if one of the scores is invalid
             }
@@ -119,7 +119,7 @@ public class SaveApplicationCommand implements Command {
     private Integer getCertificateScore(HttpServletRequest request) {
         String certificateScoreString = request.getParameter(CERTIFICATE);
 
-        if (!validator.validateScore(certificateScoreString, MAXIMUM_CERTIFICATE_SCORE)) {
+        if (!applicationInfoValidator.validateScore(certificateScoreString, MAXIMUM_CERTIFICATE_SCORE)) {
             isCertificateScoreValid = false;
             return null; // returning null if the certificate score is invalid
         } else {

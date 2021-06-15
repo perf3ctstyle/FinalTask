@@ -17,6 +17,9 @@ public class ApplicationDao extends AbstractDao<Application> {
             "VALUES (?, ?, ?, ?, ?, ?)";
     private static final String UPDATE_APPLICATION = "UPDATE USER_APPLICATION SET FACULTY_ID = ?, " +
             "CERTIFICATE_SCORE = ?, FIRST_SUBJECT_SCORE = ?, SECOND_SUBJECT_SCORE = ?, THIRD_SUBJECT_SCORE = ?" +
+            " WHERE ID = ?";
+    private static final String UPDATE_BY_USER_ID = "UPDATE USER_APPLICATION SET FACULTY_ID = ?, " +
+            "CERTIFICATE_SCORE = ?, FIRST_SUBJECT_SCORE = ?, SECOND_SUBJECT_SCORE = ?, THIRD_SUBJECT_SCORE = ?" +
             " WHERE USER_ID = ?";
     private static final String DELETE_BY_USER_ID = "DELETE FROM USER_APPLICATION WHERE USER_ID = ?";
     private static final String TABLE = "USER_APPLICATION";
@@ -31,6 +34,17 @@ public class ApplicationDao extends AbstractDao<Application> {
 
     public void deleteByUserId(long userId) throws DaoException {
         executeUpdate(DELETE_BY_USER_ID, userId);
+    }
+
+    public void updateByUserId(Application application) throws DaoException {
+        List<Integer> subjectsScores = application.getSubjectsScores();
+        executeUpdate(UPDATE_BY_USER_ID,
+                application.getFacultyId(),
+                application.getCertificateScore(),
+                subjectsScores.get(0),
+                subjectsScores.get(1),
+                subjectsScores.get(2),
+                application.getUserId());
     }
 
     @Override
@@ -54,6 +68,6 @@ public class ApplicationDao extends AbstractDao<Application> {
                 subjectsScores.get(0),
                 subjectsScores.get(1),
                 subjectsScores.get(2),
-                application.getUserId());
+                application.getId());
     }
 }

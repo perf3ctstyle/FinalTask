@@ -24,15 +24,15 @@
         <c:choose>
             <c:when test="${id == null}">
                 <a href="${pageContext.request.contextPath}"
-                   class="button return-button"><fmt:message key="local.error.return.login"/></a>
+                   class="button return-button"><fmt:message key="local.page.login"/></a>
             </c:when>
             <c:when test="${role == 'ADMIN'}">
                 <a href="${pageContext.request.contextPath}/controller?command=getAdminMainPage"
-                   class="button return-button"><fmt:message key="local.error.return.main"/></a>
+                   class="button return-button"><fmt:message key="local.page.main"/></a>
             </c:when>
             <c:when test="${role == 'ABITURIENT'}">
                 <a href="${pageContext.request.contextPath}/controller?command=getFacultyListPage"
-                   class="button return-button"><fmt:message key="local.error.return.main"/></a>
+                   class="button return-button"><fmt:message key="local.page.main"/></a>
             </c:when>
         </c:choose>
     </div>

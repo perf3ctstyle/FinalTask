@@ -90,8 +90,8 @@ public class GetApplicationsByPageCommand implements Command {
     }
 
     private Boolean isApplicationReviewed(Application application) throws ServiceException {
-        Long applicationId = application.getId();
-        Optional<Register> optionalRegister = registerService.findByApplicationId(applicationId);
+        Long userId = application.getUserId();
+        Optional<Register> optionalRegister = registerService.findByUserId(userId);
 
         return optionalRegister.isPresent();
     }

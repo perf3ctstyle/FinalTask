@@ -4,13 +4,15 @@ public class Register implements Identifiable {
 
     private final Long id;
     private final Long userId;
-    private final Long applicationId;
+    private final Long facultyId;
+    private final Integer scoreSum;
     private final Boolean isApproved;
 
-    public Register(Long id, Long userId, Long applicationId, Boolean isApproved) {
+    public Register(Long id, Long userId, Long facultyId, Integer scoreSum, Boolean isApproved) {
         this.id = id;
         this.userId = userId;
-        this.applicationId = applicationId;
+        this.facultyId = facultyId;
+        this.scoreSum = scoreSum;
         this.isApproved = isApproved;
     }
 
@@ -22,8 +24,12 @@ public class Register implements Identifiable {
         return userId;
     }
 
-    public Long getApplicationId() {
-        return applicationId;
+    public Long getFacultyId() {
+        return facultyId;
+    }
+
+    public Integer getScoreSum() {
+        return scoreSum;
     }
 
     public Boolean isApproved() {

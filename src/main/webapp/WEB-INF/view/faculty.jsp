@@ -36,7 +36,7 @@
             </div>
 
             <div class="faculty-paragraph faculty-apply">
-                <a href="${pageContext.request.contextPath}/controller?command=getApplyPage" class="button apply-faculty-button"><fmt:message key="local.faculty.button.apply"/></a>
+                <a href="${pageContext.request.contextPath}/controller?command=getApplicationData" class="button apply-faculty-button"><fmt:message key="local.faculty.button.apply"/></a>
             </div>
         </div>
     </div>

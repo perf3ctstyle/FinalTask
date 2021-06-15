@@ -9,6 +9,7 @@
 <html lang="${sessionScope.lang}">
 <head>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/style.css"/>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/limitNumberInput.js"></script>
 </head>
 <body>
 
@@ -46,6 +47,9 @@
             <th>${certificateScore}</th>
         </tr>
     </table>
+    <a id="application-change-button" class="button change-info-button" href="${pageContext.request.contextPath}/controller?command=getApplicationData">
+        <fmt:message key="local.button.application.change"/>
+    </a>
 </div>
 <ftr:footerTag currentYear="2021"/>
 </body>

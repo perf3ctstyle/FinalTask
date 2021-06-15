@@ -19,36 +19,33 @@
 <div class="login-container">
     <form action="${pageContext.request.contextPath}/controller?command=login" method="post">
         <div class="login-text">
-            <h3><fmt:message key="local.index.text"/></h3>
+            <h3><fmt:message key="local.login"/></h3>
         </div>
         <div class="input-field">
-            <input class="text-input" type="text" placeholder="<fmt:message key="local.index.username"/>"
+            <input class="text-input" type="text" placeholder="<fmt:message key="local.username"/>"
                    name="username"/>
         </div>
         <div class="input-field">
-            <input class="text-input" type="password" placeholder="<fmt:message key="local.index.password"/>"
+            <input class="text-input" type="password" placeholder="<fmt:message key="local.password"/>"
                    name="password"/>
         </div>
         <div>
             <button class="button login-button" type="submit" value="login"><fmt:message
-                    key="local.index.button.login"/></button>
+                    key="local.button.login"/></button>
         </div>
-        <div class="dropdown">
-            <button class="button dropbtn"><fmt:message key="local.button.language"/></button>
-            <div class="dropdown-content">
-                <a href="${pageContext.servletContext.contextPath}?lang=en">English</a>
-                <a href="${pageContext.servletContext.contextPath}?lang=ru">Русский</a>
-                <a href="${pageContext.servletContext.contextPath}?lang=by">Беларуская</a>
-            </div>
+        <div>
+            <a class="button signup-button" href="${pageContext.request.contextPath}/controller?command=getSignUpPage">
+                <fmt:message key="local.button.signup"/>
+            </a>
         </div>
         <c:if test="${invalidLogin == true}">
             <div class="invalid">
-                <fmt:message key="local.index.invalid.login"/>
+                <fmt:message key="local.error.invalid.login"/>
             </div>
         </c:if>
         <c:if test="${isBlocked == true}">
             <div class="invalid">
-                <fmt:message key="local.index.invalid.login.blocked"/>
+                <fmt:message key="local.error.blocked"/>
             </div>
         </c:if>
     </form>

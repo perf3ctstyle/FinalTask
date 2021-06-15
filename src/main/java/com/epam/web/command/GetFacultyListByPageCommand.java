@@ -6,7 +6,6 @@ import com.epam.web.exception.ServiceException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 public class GetFacultyListByPageCommand implements Command {
@@ -21,11 +20,7 @@ public class GetFacultyListByPageCommand implements Command {
     private static final String NUMBER_OF_PAGES = "numberOfPages";
     private static final String CURRENT_PAGE = "currentPage";
 
-    private static final String ROLE = "role";
-    private static final String ADMIN = "ADMIN";
-
-    private static final String ADMIN_FACULTIES_PAGE = "/WEB-INF/view/faculties-admin.jsp";
-    private static final String USER_FACULTIES_PAGE = "/WEB-INF/view/faculties-user.jsp";
+    private static final String FACULTIES_PAGE = "/WEB-INF/view/faculties.jsp";
 
     public GetFacultyListByPageCommand(FacultyService facultyService) {
         this.facultyService = facultyService;
@@ -49,13 +44,6 @@ public class GetFacultyListByPageCommand implements Command {
         request.setAttribute(NUMBER_OF_PAGES, numberOfPages);
         request.setAttribute(CURRENT_PAGE, page);
 
-        HttpSession httpSession = request.getSession();
-        Object roleObject = httpSession.getAttribute(ROLE);
-        String role = roleObject.toString();
-        if (role.equals(ADMIN)) {
-            return CommandResult.forward(ADMIN_FACULTIES_PAGE);
-        } else {
-            return CommandResult.forward(USER_FACULTIES_PAGE);
-        }
+        return CommandResult.forward(FACULTIES_PAGE);
     }
 }

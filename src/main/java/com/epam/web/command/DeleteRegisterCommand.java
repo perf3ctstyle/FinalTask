@@ -19,10 +19,10 @@ public class DeleteRegisterCommand implements Command {
 
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
-        String applicationIdString = request.getParameter(ID);
-        long applicationId = Long.parseLong(applicationIdString);
+        String registerIdString = request.getParameter(ID);
+        long registerId = Long.parseLong(registerIdString);
 
-        registerService.deleteById(applicationId);
+        registerService.deleteById(registerId);
 
         return CommandResult.redirect(GET_REGISTERS_PAGE);
     }

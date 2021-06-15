@@ -59,27 +59,27 @@
         </c:if>
 
         <div class="input-field">
-            <fmt:message key="local.apply.score.userSubject.first"/>
+            <fmt:message key="local.apply.score.subject.first"/>
             <input class="text-input" id="first-user-subject-input" type="number" maxlength="${scoreLength}"
-                       oninput="limitNumberInput('first-user-subject-input')"
-                       placeholder="<fmt:message key="local.apply.score"/>"
-                       name="firstSubjectScoreInput" required/>
+                   oninput="limitNumberInput('first-user-subject-input')"
+                   placeholder="<fmt:message key="local.apply.score"/>"
+                   name="firstSubjectScoreInput" required/>
         </div>
 
         <div class="input-field">
-            <fmt:message key="local.apply.score.userSubject.second"/>
+            <fmt:message key="local.apply.score.subject.second"/>
             <input class="text-input" id="second-user-subject-input" type="number" maxlength="${scoreLength}"
-                       oninput="limitNumberInput('second-user-subject-input')"
-                       placeholder="<fmt:message key="local.apply.score"/>"
-                       name="secondSubjectScoreInput" required/>
+                   oninput="limitNumberInput('second-user-subject-input')"
+                   placeholder="<fmt:message key="local.apply.score"/>"
+                   name="secondSubjectScoreInput" required/>
         </div>
 
         <div class="input-field">
-            <fmt:message key="local.apply.score.userSubject.third"/>
+            <fmt:message key="local.apply.score.subject.third"/>
             <input class="text-input" id="third-user-subject-input" type="number" maxlength="${scoreLength}"
-                       oninput="limitNumberInput('third-user-subject-input')"
-                       placeholder="<fmt:message key="local.apply.score"/>"
-                       name="thirdSubjectScoreInput" required/>
+                   oninput="limitNumberInput('third-user-subject-input')"
+                   placeholder="<fmt:message key="local.apply.score"/>"
+                   name="thirdSubjectScoreInput" required/>
         </div>
 
         <c:if test="${areSubjectsScoresValid == false}">

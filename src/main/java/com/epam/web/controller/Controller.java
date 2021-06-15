@@ -48,7 +48,6 @@ public class Controller extends HttpServlet {
         } catch (Exception e) {
             LOGGER.error(e.getMessage(), e);
             request.setAttribute(ERROR_MESSAGE, e.getMessage());
-            e.printStackTrace();
             page = ERROR_PAGE;
         }
 
