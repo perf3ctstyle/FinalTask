@@ -12,5 +12,7 @@
         key="local.menu.faculties"/></a>
 <a id="apply" href="${pageContext.servletContext.contextPath}/controller?command=getApplicationData"><fmt:message
         key="local.button.apply"/></a>
+<a id="admitted" href="${pageContext.request.contextPath}/controller?command=getAdmittedAbiturientsPage"><fmt:message
+        key="local.menu.admitted"/></a>
 </body>
 </html>

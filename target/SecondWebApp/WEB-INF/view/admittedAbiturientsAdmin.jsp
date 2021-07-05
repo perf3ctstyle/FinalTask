@@ -25,6 +25,9 @@
         <span class="applicant-name">
             <fmt:message key="local.users.application"/>
         </span>
+        <span class="applicant-faculty-name">
+            <fmt:message key="local.faculty.name"/>
+        </span>
     </div>
 
     <c:forEach var="credential" items="${credentialList}" varStatus="status">
@@ -34,20 +37,9 @@
                 <fmt:message key="local.users.application"/> ${credential.name} ${credential.surname}
             </a>
             <div class="buttons">
-                <a href="${pageContext.request.contextPath}/controller?command=getAbiturientInfoPage&id=${credential.userId}&name=${credential.name}&surname=${credential.surname}"
-                   class="button second-entity-button">
-                    <fmt:message key="local.users.button.details"/>
-                </a>
-                <c:if test="${isApplicationReviewedList[status.index] == false}">
-                    <a href="${pageContext.request.contextPath}/controller?command=approveApplication&id=${applicationIdList[status.index]}&approve=false"
-                       class="button second-entity-button">
-                        <fmt:message key="local.button.decline"/>
-                    </a>
-                    <a href="${pageContext.request.contextPath}/controller?command=approveApplication&id=${applicationIdList[status.index]}&approve=true"
-                       class="button second-entity-button">
-                        <fmt:message key="local.button.approve"/>
-                    </a>
-                </c:if>
+                <span class="applicant-faculty-name">
+                        ${facultyNameList[status.index]}
+                </span>
             </div>
         </div>
     </c:forEach>
@@ -56,17 +48,17 @@
         <div class="pagination">
             <c:if test="${numberOfPages > 1}">
                 <c:if test="${currentPage != 1}">
-                    <a href="${pageContext.request.contextPath}/controller?command=getApplicationsPage&page=${currentPage-1}">&laquo;</a>
+                    <a href="${pageContext.request.contextPath}/controller?command=getAdmittedAbiturientsPage&page=${currentPage-1}">&laquo;</a>
                 </c:if>
                 <c:forEach begin="1" end="${numberOfPages}" var="i">
                     <a <c:if test="${currentPage == i}">
                         style="background-color: #426e70; color: white;"
                     </c:if>
-                            href="${pageContext.request.contextPath}/controller?command=getApplicationsPage&page=${i}">${i}
+                            href="${pageContext.request.contextPath}/controller?command=getAdmittedAbiturientsPage&page=${i}">${i}
                     </a>
                 </c:forEach>
                 <c:if test="${currentPage != numberOfPages}">
-                    <a href="${pageContext.request.contextPath}/controller?command=getApplicationsPage&page=${currentPage+1}">&raquo;</a>
+                    <a href="${pageContext.request.contextPath}/controller?command=getAdmittedAbiturientsPage&page=${currentPage+1}">&raquo;</a>
                 </c:if>
             </c:if>
         </div>

@@ -13,7 +13,7 @@
 <body>
 
 <div class="sidenav">
-    <jsp:include page="fragments/menu-admin.jsp"/>
+    <jsp:include page="fragments/menu-user.jsp"/>
 </div>
 
 <div class="header">
@@ -32,9 +32,7 @@
 
     <c:forEach var="credential" items="${credentialList}" varStatus="status">
         <div class="user">
-            <a href="${pageContext.request.contextPath}/controller?command=getAbiturientInfoPage&id=${credential.userId}&name=${credential.name}&surname=${credential.surname}" class="applicant-name">
-                <fmt:message key="local.users.application"/> ${credential.name} ${credential.surname}
-            </a>
+            ${credential.name} ${credential.surname}
             <div class="buttons">
                 <span class="applicant-faculty-name">
                         ${facultyNameList[status.index]}
@@ -45,18 +43,20 @@
 
     <div class="pagination-wrapper">
         <div class="pagination">
-            <c:if test="${currentPage != 1}">
-                <a href="${pageContext.request.contextPath}/controller?command=getAdmittedAbiturientsPage&page=${currentPage-1}">&laquo;</a>
-            </c:if>
-            <c:forEach begin="1" end="${numberOfPages}" var="i">
-                <a <c:if test="${currentPage == i}">
-                    style="background-color: #426e70; color: white;"
+            <c:if test="${numberOfPages > 1}">
+                <c:if test="${currentPage != 1}">
+                    <a href="${pageContext.request.contextPath}/controller?command=getAdmittedAbiturientsPage&page=${currentPage-1}">&laquo;</a>
                 </c:if>
-                        href="${pageContext.request.contextPath}/controller?command=getAdmittedAbiturientsPage&page=${i}">${i}
-                </a>
-            </c:forEach>
-            <c:if test="${currentPage != numberOfPages}">
-                <a href="${pageContext.request.contextPath}/controller?command=getAdmittedAbiturientsPage&page=${currentPage+1}">&raquo;</a>
+                <c:forEach begin="1" end="${numberOfPages}" var="i">
+                    <a <c:if test="${currentPage == i}">
+                        style="background-color: #426e70; color: white;"
+                    </c:if>
+                            href="${pageContext.request.contextPath}/controller?command=getAdmittedAbiturientsPage&page=${i}">${i}
+                    </a>
+                </c:forEach>
+                <c:if test="${currentPage != numberOfPages}">
+                    <a href="${pageContext.request.contextPath}/controller?command=getAdmittedAbiturientsPage&page=${currentPage+1}">&raquo;</a>
+                </c:if>
             </c:if>
         </div>
     </div>

@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * This is an interface that specifies the behaviour of all commands as part of the Front Controller pattern.
+ * This is an interface that specifies the behaviour of all commands as part of the Command pattern.
  *
  * @author Nikita Torop
  */

@@ -75,6 +75,17 @@ public class RegisterService {
         }
     }
 
+    public int countRegisters() throws ServiceException {
+
+        try (DaoHelper helper = daoHelperFactory.create()) {
+            RegisterDao registerDao = (RegisterDao) helper.createDao(REGISTER_DAO);
+
+            return registerDao.findAll().size();
+        } catch (DaoException e) {
+            throw new ServiceException(e.getMessage(), e);
+        }
+    }
+
     public List<Register> findAdmittedAbiturientsRegistersForFaculty(long facultyId, int admissionPlan) throws ServiceException {
 
         try (DaoHelper helper = daoHelperFactory.create()) {

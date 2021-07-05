@@ -96,7 +96,8 @@ public class CommandFactory {
             case DELETE_REGISTER:
                 return new DeleteRegisterCommand(new RegisterService(new DaoHelperFactory()));
             case SAVE_ADMITTED_ABITURIENTS:
-                return new SaveAdmittedAbiturientsFromRegisterCommand(new RegisterService(new DaoHelperFactory()),
+                return new SaveAdmittedAbiturientsFromRegisterCommand(new ApplicationService(new DaoHelperFactory()),
+                        new RegisterService(new DaoHelperFactory()),
                         new AdmittedAbiturientService(new DaoHelperFactory()),
                         new FacultyService(new DaoHelperFactory()));
             case GET_ADMITTED_ABITURIENTS:

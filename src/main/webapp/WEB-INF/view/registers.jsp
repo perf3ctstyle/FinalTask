@@ -39,7 +39,8 @@
                 </c:otherwise>
             </c:choose>
             <div class="buttons">
-                <a href="${pageContext.request.contextPath}/controller?command=deleteRegister&id=${registerIdList[status.index]}" class="button first-entity-button">
+                <a href="${pageContext.request.contextPath}/controller?command=deleteRegister&id=${registerIdList[status.index]}"
+                   class="button first-entity-button">
                     <fmt:message key="local.button.delete"/>
                 </a>
             </div>
@@ -48,26 +49,34 @@
 
     <div class="pagination-wrapper">
         <div class="pagination">
-            <c:if test="${currentPage != 1}">
-                <a href="${pageContext.request.contextPath}/controller?command=getRegistersPage&page=${currentPage-1}">&laquo;</a>
-            </c:if>
-            <c:forEach begin="1" end="${numberOfPages}" var="i">
-                <a <c:if test="${currentPage == i}">
-                    style="background-color: #426e70; color: white;"
+            <c:if test="${numberOfPages > 1}">
+                <c:if test="${currentPage != 1}">
+                    <a href="${pageContext.request.contextPath}/controller?command=getRegistersPage&page=${currentPage-1}">&laquo;</a>
                 </c:if>
-                        href="${pageContext.request.contextPath}/controller?command=getRegistersPage&page=${i}">${i}
-                </a>
-            </c:forEach>
-            <c:if test="${currentPage != numberOfPages}">
-                <a href="${pageContext.request.contextPath}/controller?command=getRegistersPage&page=${currentPage+1}">&raquo;</a>
+                <c:forEach begin="1" end="${numberOfPages}" var="i">
+                    <a <c:if test="${currentPage == i}">
+                        style="background-color: #426e70; color: white;"
+                    </c:if>
+                            href="${pageContext.request.contextPath}/controller?command=getRegistersPage&page=${i}">${i}
+                    </a>
+                </c:forEach>
+                <c:if test="${currentPage != numberOfPages}">
+                    <a href="${pageContext.request.contextPath}/controller?command=getRegistersPage&page=${currentPage+1}">&raquo;</a>
+                </c:if>
             </c:if>
         </div>
     </div>
     <div class="get-faculties">
-        <a href="${pageContext.request.contextPath}/controller?command=saveAdmittedAbiturients" class="button save-admitted-abiturients-button">
+        <a href="${pageContext.request.contextPath}/controller?command=saveAdmittedAbiturients"
+           class="button save-admitted-abiturients-button">
             <fmt:message key="local.button.faculty.admitted.save"/>
         </a>
     </div>
+    <c:if test="${applicationsNotReviewed == true}">
+        <div class="invalid">
+            <fmt:message key="local.register.applications.unreviewed"/>
+        </div>
+    </c:if>
 </div>
 <ftr:footerTag currentYear="2021"/>
 </body>

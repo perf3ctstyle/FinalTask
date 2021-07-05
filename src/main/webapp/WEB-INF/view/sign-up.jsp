@@ -8,7 +8,6 @@
 
 <html lang="${lang}">
 <head>
-    <title><fmt:message key="local.title"/></title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/style.css"/>
 </head>
 <body>

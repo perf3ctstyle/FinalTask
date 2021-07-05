@@ -8,7 +8,6 @@
 
 <html lang="${lang}">
 <head>
-    <title><fmt:message key="local.title"/></title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/style.css"/>
 </head>
 <body>
@@ -21,9 +20,15 @@
         <div class="login-text">
             <h3><fmt:message key="local.login"/></h3>
         </div>
+        <div>
+            <fmt:message key="local.username"/>
+        </div>
         <div class="input-field">
             <input class="text-input" type="text" placeholder="<fmt:message key="local.username"/>"
                    name="username"/>
+        </div>
+        <div>
+            <fmt:message key="local.password"/>
         </div>
         <div class="input-field">
             <input class="text-input" type="password" placeholder="<fmt:message key="local.password"/>"

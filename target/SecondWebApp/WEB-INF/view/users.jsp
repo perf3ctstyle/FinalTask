@@ -46,8 +46,8 @@
                                 </c:otherwise>
                             </c:choose>
                         </a>
-                    <a href="${pageContext.request.contextPath}/controller?command=deleteUser&id=${credential.userId}"
-                       class="button second-entity-button"><fmt:message key="local.button.delete"/></a>
+                        <a href="${pageContext.request.contextPath}/controller?command=deleteUser&id=${credential.userId}"
+                           class="button second-entity-button"><fmt:message key="local.button.delete"/></a>
                     </c:otherwise>
                 </c:choose>
             </div>
@@ -56,18 +56,20 @@
 
     <div class="pagination-wrapper">
         <div class="pagination">
-            <c:if test="${currentPage != 1}">
-                <a href="${pageContext.request.contextPath}/controller?command=getAdminMainPage&page=${currentPage-1}">&laquo;</a>
-            </c:if>
-            <c:forEach begin="1" end="${numberOfPages}" var="i">
-                <a <c:if test="${currentPage == i}">
-                    style="background-color: #426e70; color: white;"
+            <c:if test="${numberOfPages > 1}">
+                <c:if test="${currentPage != 1}">
+                    <a href="${pageContext.request.contextPath}/controller?command=getAdminMainPage&page=${currentPage-1}">&laquo;</a>
                 </c:if>
-                        href="${pageContext.request.contextPath}/controller?command=getAdminMainPage&page=${i}">${i}
-                </a>
-            </c:forEach>
-            <c:if test="${currentPage != numberOfPages}">
-                <a href="${pageContext.request.contextPath}/controller?command=getAdminMainPage&page=${currentPage+1}">&raquo;</a>
+                <c:forEach begin="1" end="${numberOfPages}" var="i">
+                    <a <c:if test="${currentPage == i}">
+                        style="background-color: #426e70; color: white;"
+                    </c:if>
+                            href="${pageContext.request.contextPath}/controller?command=getAdminMainPage&page=${i}">${i}
+                    </a>
+                </c:forEach>
+                <c:if test="${currentPage != numberOfPages}">
+                    <a href="${pageContext.request.contextPath}/controller?command=getAdminMainPage&page=${currentPage+1}">&raquo;</a>
+                </c:if>
             </c:if>
         </div>
     </div>

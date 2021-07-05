@@ -208,6 +208,7 @@ body {
 .faculty-plan {
     float: right;
     margin-top: 4px;
+    margin-left: 10px;
     margin-right: 10px;
 }
 
@@ -408,6 +409,7 @@ body {
 }
 
 .invalid {
+    text-align: center;
     color: #FF0000;
     font-weight: 700;
     margin-top: 10px;
