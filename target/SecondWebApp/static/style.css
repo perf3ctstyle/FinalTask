@@ -1,0 +1,678 @@
+body {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+}
+
+.login-container {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 50%;
+    border: 3px solid black;
+    padding: 10px;
+    text-align: center;
+}
+
+.login-text h3 {
+    color: #fff;
+}
+
+.login-text {
+    margin-bottom: 10px;
+    padding: 2em 0;
+    background: cadetblue;
+    border: 3px solid black;
+    color: #fff;
+}
+
+.signup-text {
+    margin-bottom: 5px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.signup-button {
+    margin: 5px;
+    cursor: pointer;
+    font-weight: 900;
+    padding: 3px;
+    width: 35%;
+    font-size: 14px;
+    background: cadetblue;
+    border: 2px solid black;
+    color: #fff;
+    transition-duration: 0.4s;
+}
+
+.input-field {
+    margin: 5px;
+
+}
+
+.text-input {
+    outline: none;
+    color: black;
+}
+
+.login-button {
+    margin: 5px;
+    cursor: pointer;
+    font-weight: 900;
+    padding: 12px 0px;
+    width: 35%;
+    font-size: 14px;
+    background: cadetblue;
+    border: 2px solid black;
+    color: #fff;
+    transition-duration: 0.4s;
+}
+
+.footer {
+    right: 0;
+    bottom: 0;
+    margin: 0;
+    width: 100%;
+    border: 2px solid black;
+    position: fixed;
+    background-color: cadetblue;
+    text-align: center;
+}
+
+.sidenav {
+    height: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #395e60;
+    overflow-x: hidden;
+    padding-top: 67px;
+    border: 2px solid black;
+}
+
+.sidenav a {
+    padding: 6px 30px 6px 20px;
+    text-decoration: none;
+    font-size: 17px;
+    color: #fff;
+    display: block;
+}
+
+.sidenav a:hover {
+    color: #5f9ea0;
+    font-weight: 500;
+    background: white;
+}
+
+.header {
+    top: 0;
+    left: 0;
+    position: fixed;
+    text-align: center;
+    background: cadetblue;
+    border: 3px solid black;
+    display: block;
+    width: 100%;
+}
+
+.header-text {
+    margin: 10px;
+    color: #fff;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 2em;
+    display: inline-block;
+    padding-top: 3px;
+    padding-left: 80px;
+}
+
+.logout-button {
+    margin: 7px;
+    cursor: pointer;
+    font-weight: 900;
+    padding: 15px 40px 15px 40px;
+    width: 30%;
+    font-size: 13px;
+    background: #9fc4c6;
+    border: 2px solid black;
+    color: #fff;
+    transition-duration: 0.4s;
+}
+
+.button {
+    border: 2px solid black;
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    cursor: pointer;
+    border-radius: 7px;
+    text-decoration: none;
+}
+
+.button:hover {
+    background: white;
+    color: cadetblue;
+}
+
+.main-content-container {
+    margin-left: 160px;
+
+}
+
+#main-content-heading {
+    margin-top: 80px;
+    background: #2f4f50;
+    color: #fff;
+}
+
+.faculty {
+    display: inline-block;
+    width: 97%;
+    background: #7eb1b3;
+    margin: 7px;
+    padding: 13px;
+    font-weight: 700;
+    font-size: 16px;
+    border: 3px solid black;
+}
+
+.apply-button {
+    background: #4E9CAF;
+    padding: 5px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    line-height: 15px;
+    float: right;
+}
+
+.about-button {
+    margin-left: 10px;
+    background: #4E9CAF;
+    padding: 5px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    line-height: 15px;
+    float: right;
+}
+
+.faculty-name {
+    text-decoration: underline;
+}
+
+.faculty-name:hover {
+    color: #fff;
+}
+
+.faculty-plan {
+    float: right;
+    margin-top: 4px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.header-buttons {
+    display: flex;
+    float: right;
+}
+
+.buttons {
+    display: inline-block;
+    float: right;
+    margin-right: 9px;
+}
+
+.dropbtn {
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.dropbtn-logged-in {
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.dropbtn-logged-out {
+    margin-top: 5px;
+    margin-right: 80px;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    display: inline-block;
+    float: right;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    text-align: left;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    background-color: #6fa7a9;
+    color: white;
+}
+
+.faculty-title {
+    margin-top: 80px;
+    text-align: center;
+}
+
+.faculty-content {
+    margin: 10px;
+    width: 95%;
+}
+
+.title {
+    text-align: center;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.faculty-paragraph {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.apply-faculty-button {
+    background: #4E9CAF;
+    padding: 5px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    line-height: 15px;
+    width: 50%;
+}
+
+#application-change-button {
+    position: absolute;
+    left: 45%;
+}
+
+.change-info-button {
+    background: #4E9CAF;
+    padding: 5px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    line-height: 15px;
+}
+
+.change-info {
+    border: 1px solid black;
+    background-color: cadetblue;
+    font-size: 17px;
+    padding: 3px;
+    color: white;
+}
+
+.change-application-form {
+    text-align: center;
+    margin: 0;
+    padding: 15px;
+    position: absolute;
+    border: 3px solid black;
+    top: 50%;
+    left: 55%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.change-application-form div {
+    margin: 15px;
+}
+
+#menu-dropbtn {
+    background-color: #395e60;
+    color: white;
+    margin: 0px 10px 0px 10px;
+    padding: 10px;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+    border: 0px;
+    font-weight: normal;
+}
+
+#menu-dropdown:hover #menu-dropbtn {
+    color: #5f9ea0;
+    font-weight: 500;
+    background: white;
+    width: 170%;
+    border-radius: 0;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+#apply-container {
+    text-align: center;
+    margin: 0;
+    padding: 15px;
+    position: absolute;
+    border: 3px solid black;
+    top: 50%;
+    left: 55%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.return-button {
+    margin-top: 0.83em;
+    background: #4E9CAF;
+    padding: 5px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    line-height: 15px;
+}
+
+.apply-title {
+    border: 1px solid black;
+    background-color: cadetblue;
+    font-size: 17px;
+    padding: 3px;
+    color: white;
+}
+
+.subject-select {
+    margin-right: 20px;
+}
+
+#apply-form div {
+    margin: 15px;
+}
+
+.invalid {
+    text-align: center;
+    color: #FF0000;
+    font-weight: 700;
+    margin-top: 10px;
+}
+
+.successful {
+    color: green;
+    font-weight: 700;
+    margin-top: 10px;
+}
+
+.pagination-wrapper {
+    text-align: center;
+}
+
+.pagination {
+    display: inline-block;
+    margin: 7px 0px 0px 0px;
+}
+
+.pagination a:active {
+    background-color: #4E9CAF;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+}
+
+.pagination a:active {
+    background-color: #426e70;
+    color: white;
+    border: 2px solid black;
+}
+
+.pagination a:hover:not(.active) {
+    background-color: #bfd8d9;
+}
+
+.user {
+    display: inline-block;
+    width: 97%;
+    background: #7eb1b3;
+    margin: 7px;
+    padding: 13px;
+    font-weight: 700;
+    font-size: 16px;
+    border: 3px solid black;
+}
+
+.applicant-name {
+    text-decoration: underline;
+}
+
+.applicant-faculty-name {
+    float: right;
+}
+
+.applicant-name:hover {
+    color: #ffffff;
+}
+
+.abiturient-score {
+    float: right;
+    margin-top: 4px;
+    margin-right: 10px;
+}
+
+.first-entity-button {
+    background: #4E9CAF;
+    padding: 5px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    line-height: 15px;
+    float: right;
+}
+
+.second-entity-button {
+    margin-left: 10px;
+    background: #4E9CAF;
+    padding: 5px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    line-height: 15px;
+    float: right;
+}
+
+#applications-container {
+    margin-left: 160px;
+}
+
+.abiturient-info {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 80%;
+    margin-left: 60px;
+    margin-bottom: 10px;
+}
+
+.abiturient-info td, .abiturient-info th {
+    border: 1px solid black;
+    padding: 8px;
+}
+
+.abiturient-info th {
+    text-align: left;
+    background-color: white;
+    color: black;
+}
+
+.admin-content-heading {
+    margin-left: 60px;
+    width: 78%;
+    text-align: center;
+}
+
+.get-faculties {
+    text-align: center;
+    margin-top: 14px;
+}
+
+.save-admitted-abiturients-button {
+    background: #4E9CAF;
+    padding: 5px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    line-height: 15px;
+}
+
+@media only screen and (max-width: 768px) {
+    .sidenav a {
+        font-size: 15px;
+    }
+
+    .sidenav button {
+        font-size: 10px;
+    }
+
+    .faculty-list {
+        margin-left: 110px;
+    }
+
+    .header-text {
+        font-size: 22px;
+        margin: 0px;
+        padding-left: 120px;
+    }
+
+    .logout-button {
+        font-size: 12px;
+        margin: 2.5px 5px 5px 0;
+        padding: 10px;
+        width: 15%;
+    }
+
+    .faculty {
+        width: 95%;
+        font-size: 14px;
+    }
+
+    .pagination a {
+        font-size: 12px;
+        padding: 9px 9px 9px 9px;
+    }
+
+    #table-heading {
+        margin-top: 60px;
+    }
+
+    #apply-container {
+        margin-left: 10px;
+    }
+
+    .faculty-title {
+        margin-top: 60px;
+    }
+
+    .user {
+        width: 95%;
+        font-size: 14px;
+    }
+
+    #applications-container {
+        margin-left: 140px;
+    }
+
+    .admin-content-container {
+        margin-left: 130px;
+    }
+
+    .admin-content-heading {
+        width: 80%;
+    }
+
+}
+
+@media only screen and (max-width: 461px) {
+
+    .sidenav a {
+        font-size: 12px;
+    }
+
+    #menu-dropbtn {
+        font-size: 12px;
+    }
+
+    .main-content-container {
+        margin-left: 110px;
+    }
+
+    .faculty-list {
+        margin-left: 100px;
+    }
+
+    .faculty {
+        font-size: 12px;
+        padding: 9px;
+    }
+
+    .header-text {
+        font-size: 18px;
+        margin: 0px;
+    }
+    .logout-button {
+        font-size: 9px;
+        margin: 6px 3px 3px 0px;
+        padding: 1px;
+    }
+
+    .faculty-title {
+        font-size: 13px;
+    }
+
+    .title {
+        font-size: 14px;
+    }
+
+    .faculty-paragraph {
+        text-align: center;
+        font-size: 13px;
+    }
+
+    #apply-container {
+        margin-left: 40px;
+    }
+
+    .user {
+        font-size: 12px;
+        padding: 9px;
+    }
+
+    #applications-container {
+        margin-left: 125px;
+    }
+
+    .admin-content-container {
+        margin-left: 80px;
+    }
+}
